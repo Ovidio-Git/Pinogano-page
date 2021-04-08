@@ -9,9 +9,9 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/ejemplo')
-def ejemplo():
-    return render_template('ejemplo.html')
+@app.route('/chivos')
+def chivos():
+    return render_template('chivos.html')
 
 
 if __name__ == '__main__':
