@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-
+from toolbox import Chivo
 
 app = Flask(__name__)
 
@@ -12,10 +12,14 @@ def index():
 @app.route('/chivos', methods=['GET','POST'])
 def chivos():
     if request.method == 'POST':
-        vector = request.form.get('vector_file')
+  
+        Cfile  = request.form.get('vector_file')
         start  = request.form.get('value_start')
         finish = request.form.get('value_finish')
-        print(vector)
+        
+        output = Chivo(vector=Cfile)
+        print(Cfile)
+        print(output.selectionSort())
         print(start)
         print(finish)
      
