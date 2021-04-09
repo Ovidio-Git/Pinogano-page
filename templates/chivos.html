@@ -8,22 +8,23 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <label for="exampleTextarea">Ingrese los números de identificación separados por coma:</label>
-    <textarea type="number" class="form-control" id="exampleTextarea" rows="3" style="height: 100px;"></textarea>
-    <br>
+
+<form class="pt-4" action="/chivos" method="post">
     <div class="form-group">
+        <label for="exampleTextarea">Ingrese los números de identificación separados por coma:</label>
+        <textarea type="number" name="vector_file"  class="form-control" id="exampleTextarea" rows="3" style="height: 100px;"></textarea>
+        <br>
+        <div class="form-group">
             <label class="col-form-label" for="inputDefault">Rango numeros de identificiacion</label>
-            <input type="text" class="form-control" placeholder="Numero Inicial" id="inputDefault">
+            <input type="text" name="value_start" class="form-control" placeholder="Numero Inicial" id="inputDefault">
             <br> 
-            <input type="text" class="form-control" placeholder="Numero Final" id="inputDefault">
-        </div>
-        <div class="contenido pb-4 pt-4">
-            <button type="button" class="btn btn-primary">Iniciar</button>
+            <input type="text" name="value_finish" class="form-control" placeholder="Numero Final" id="inputDefault">
+            <div class="contenido pb-4 pt-4">
+                <button  type="submit" class="btn btn-primary">Iniciar</button>
+            </div>
         </div>
     </div>
-</div>
-
+</form>
 
 {% endblock %}
 
