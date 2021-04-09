@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 
 
 app = Flask(__name__)
@@ -9,8 +9,14 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/chivos')
+@app.route('/chivos', methods=['GET','POST'])
 def chivos():
+    # if request.methods == 'POST':
+    #     numero = request.form['name']
+    #     print(numero)
+
+
+
     return render_template('chivos.html')
 
 
