@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS history_goat
+USE history_goat
+
+CREATE TABLE IF NOT EXISTS goats (
+
+	id INTEGER UNSIGNED NOT NULL,
+	gender ENUM('Macho','Hembra') NOT NULL ,
+	status TINYINT(1) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+);

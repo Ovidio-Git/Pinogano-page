@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block body %} 
+
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h3 class="text-center pt-4 pb-4">Registro</h3>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered bg-white table-sm">
+                    <thead> 
+                        <tr class="table-primary">
+                            <th scope="col">Numero ID</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>{{ start }}</td>
+                            <td>{{ Cfile }}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

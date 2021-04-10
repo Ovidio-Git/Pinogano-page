@@ -8,8 +8,7 @@
         </div>
     </div>
 </div>
-
-<form class="pt-4" action="/chivos" method="post">
+<form action="/chivos" method="post">
     <div class="form-group">
         <label for="exampleTextarea">Ingrese los números de identificación separados por coma:</label>
         <textarea type="number" name="vector_file"  class="form-control" id="exampleTextarea" rows="3" style="height: 100px;"></textarea>
@@ -20,11 +19,13 @@
             <br> 
             <input type="text" name="value_finish" class="form-control" placeholder="Numero Final" id="inputDefault">
             <div class="contenido pb-4 pt-4">
-                <button  type="submit" class="btn btn-primary">Iniciar</button>
+                <button  type="submit" class="btn btn-block btn-success">Iniciar</button>
             </div>
+          
         </div>
     </div>
 </form>
 
 {% endblock %}
+
 

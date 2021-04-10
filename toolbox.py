@@ -3,6 +3,7 @@ class Chivo:
     def __init__(self, vector):
         self._vector = vector
         self.selectionSort()
+       
 
     def _readfile(self):
         aux = self._vector.split()
@@ -21,4 +22,9 @@ class Chivo:
                     menor = j
             array[i], array[menor] = array[menor], array[i]
         return array
+
+    def Genders(self, data):
+        self._data = data
+        genders = ['Hembra' if self._data[i] <= 80 else 'Macho' for i in range(len(self._data))]
+        return genders
 
