@@ -25,19 +25,37 @@ def chivos():
         start    = request.form.get('value_start')
         finish   = request.form.get('value_finish')
         
-        output = Chivo(vector=id_goat)
-        ide = output.selectionSort()
-        genders = output.Genders(ide)
-        status =1
+        output  = Chivo(vector=id_goat, start=start, finish=finish)
+        ide     = output.selectionSort()
+        genders1 = output.Genders(ide)
+        compare = output.Compare()
+        genders2 = output.Genders(compare)
+        lengt1   = len(ide)
+        lengt2   = len(compare) 
+       
+
 
         cur = mysql.connection.cursor() # cur permited make queries
-        for i in range(len(ide)):
-            cur.execute('INSERT INTO goats(id, gender, status) VALUES(%s,%s,%s)',(ide[i], genders[i], status))# make a query
+        for i in range(lengt1):
+            cur.execute('INSERT INTO goats(goat_id, gender, status) VALUES(%s,%s,%s)',(ide[i], genders1[i], 1))# make a query
             mysql.connection.commit()# execute the query
+        cur.execute('SELECT * FROM goats ORDER BY id DESC LIMIT %s',(lengt1,)) # the point in (lengt,) is important!
+        dataframe1 = cur.fetchall()
         
-       
-        # print(output.selectionSort())
-        return render_template('tabel.html', Cfile=ide, gender=genders, statu=status)
+        for i in range(lengt2):
+            cur.execute('INSERT INTO goats(goat_id, gender, status) VALUES(%s,%s,%s)',(compare[i], genders2[i], 0))# make a query
+            mysql.connection.commit()# execute the query
+        cur.execute('SELECT * FROM goats ORDER BY id DESC LIMIT %s',(lengt2,)) # the point in (lengt,) is important!
+        dataframe2 = cur.fetchall()
+        
+        cur.close()
+
+        context = {
+            'dataframe1': dataframe1,
+            'dataframe2': dataframe2
+        }
+
+        return render_template('tabel.html', **context)
                 
     return render_template('chivos.html')
 
