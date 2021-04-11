@@ -9,14 +9,6 @@ header {
     padding-top: 80px;
 }
 
-.imge-back {
-    background-image: url('../static/images/house.jpeg');
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-}
-
 .cabecera{
     color: #fff;
     height: 300px;

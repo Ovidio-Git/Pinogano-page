@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 {% block body %} 
-
+<style>
+    td{
+        text-align: center;    
+     }
+</style>
 <div class="container pt-4">
     <div class="row">
         <div class="col-md-4 offset-md-4">
@@ -35,7 +39,7 @@
                             <th scope="col">Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>   
                         {% for data in dataframe2 %}  
                         <tr>
                             <td>{{ data.1 }}</td>
