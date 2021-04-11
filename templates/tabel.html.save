@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block body %} 
+<style>
+    td{
+        text-align: center;    
+     }
+</style>
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h3 class="text-center pt-4 pb-4">Registro</h3>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered bg-white table-sm">
+                    <thead> 
+                        <tr class="table-primary text-center">
+                            <th scope="col">Numero ID</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in dataframe1 %}  
+                        <tr>
+                            <td>{{ data.1 }}</td>
+                            <td>{{ data.2 }}</td>
+                            <td>{{ data.3 }}</td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+            <h3 class="text-center pt-4 pb-4">Faltantes</h3>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered bg-white table-sm">
+                    <thead> 
+                        <tr class="table-danger">
+                            <th scope="col">Numero ID</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>   
+                        {% for data in dataframe2 %}  
+                        <tr>
+                            <td>{{ data.1 }}</td>
+                            <td>{{ data.2 }}</td>
+                            <td>{{ data.3 }}</td>
+                        </tr>
+                        {% endfor%}
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
