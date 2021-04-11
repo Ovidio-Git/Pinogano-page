@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect,request, redirect, url_for
-from flask_mysqldb import MySQL
+from flaskext.mysql import MySQL
 from toolbox import Chivo
 
 
@@ -61,4 +61,4 @@ def chivos():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run("0.0.0.0",debug=False)
