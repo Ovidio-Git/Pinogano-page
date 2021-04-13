@@ -17,3 +17,23 @@ header {
     vertical-align: middle;
     text-shadow: #111 0px 0px 10px;
 }
+
+.head {
+                   
+    background-image: url('../static/images/house.jpeg');
+    min-height: 500px;  
+    background-size: cover;
+    background-position: center;
+    background-repeat:  repeat-x;
+    background-attachment: scroll;
+    height: auto;
+    background-size: 100% auto;
+    
+}
+
+.colorcell{
+    background-color: lightcoral;
+}
+.colorcell2{
+    background-color: palegreen;
+}

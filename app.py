@@ -25,11 +25,12 @@ def chivos():
         start    = request.form.get('value_start')
         finish   = request.form.get('value_finish')
         
-        output  = Chivo(vector=id_goat, start=start, finish=finish)
-        ide     = output.selectionSort()
+        output   = Chivo(vector=id_goat, start=start, finish=finish)
+        ide      = output.selectionSort()
         genders1 = output.Genders(ide)
-        compare = output.Compare()
+        compare  = output.Compare()
         genders2 = output.Genders(compare)
+        feme, male = output.totalgenders(genders1)
         lengt1   = len(ide)
         lengt2   = len(compare) 
        
@@ -52,7 +53,10 @@ def chivos():
 
         context = {
             'dataframe1': dataframe1,
-            'dataframe2': dataframe2
+            'dataframe2': dataframe2,
+            'lengt1':lengt1,
+            'male':male,
+            'feme':feme
         }
 
         return render_template('tabel.html', **context)
@@ -61,5 +65,5 @@ def chivos():
 
 
 if __name__ == '__main__':
-    app.run("0.0.0.0",debug=False)
-    
+    #app.run("0.0.0.0",debug=False)
+    app.run()
