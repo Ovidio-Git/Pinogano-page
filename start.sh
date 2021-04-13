@@ -1,11 +1,10 @@
 #!/bin/bash
 
 
-source ../bin/activate
 
 export FLASK_APP=main.py
-export FLASK_DEBUG=1
-export FLASK_ENV=development
+export FLASK_DEBUG=0
+export FLASK_ENV=production
 
 sudo fuser -k 5000/tcp
 
