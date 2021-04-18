@@ -26,7 +26,6 @@ class Chivo:
 
     def Genders(self, data):
         self._data = data
-        nf = 0
         genders = ['Hembra' if self._data[i] <= 80 else 'Macho' for i in range(len(self._data))]
         return genders
 
@@ -42,7 +41,7 @@ class Chivo:
 
     def Compare(self):
         target = self.selectionSort()
-        base = [num for num in range(int(self._start),int(self._finish))]
+        base = [num for num in range(int(self._start),int(self._finish)+1)]
         A = set(base)
         B = set(target)
         C = list(A.difference(B))

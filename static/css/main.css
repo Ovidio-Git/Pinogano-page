@@ -1,39 +1,10 @@
-header {
-    background: rgba(0,0,0,0.9);
-    width: 100%;
-    position: fixed;
-    z-index: 100;
+#main .carousel-inner img {
+    max-height: auto;
+    object-fit: cover;
+
 }
+
 
 .contenido {
     padding-top: 80px;
-}
-
-.cabecera{
-    color: #fff;
-    height: 300px;
-    line-height: 300px;
-    text-align: center;
-    vertical-align: middle;
-    text-shadow: #111 0px 0px 10px;
-}
-
-.head {
-                   
-    background-image: url('../static/images/house.jpeg');
-    min-height: 500px;  
-    background-size: cover;
-    background-position: center;
-    background-repeat:  repeat-x;
-    background-attachment: scroll;
-    height: auto;
-    background-size: 100% auto;
-    
-}
-
-.colorcell{
-    background-color: lightcoral;
-}
-.colorcell2{
-    background-color: palegreen;
 }

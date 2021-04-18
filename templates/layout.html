@@ -20,6 +20,10 @@
         <!-- Titulo -->   
         <title> Pinogano</title>
          
+        <!-- ChartJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+ 
     </head>
     <body>
         <header class="bg-primary">
@@ -40,12 +44,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="https://github.com/Ovidio-Git/Pinogano-page/tree/master" target="_blank">GitHub</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home">Luz</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </header>
 
-        <div class="contenido container pb-4">
+        <div class="container-xxl ">
             {% block body %}
             {% endblock %}
         </div>
