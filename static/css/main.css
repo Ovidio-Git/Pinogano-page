@@ -4,7 +4,41 @@
 
 }
 
+#carousel {
+    position: relative;
+}
+
+#carousel .overlay{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-shadow: #111 0px 0px 10px;
+    color: white;   
+}
+
+/* card{
+    position: absolute;
+    z-index: 2;
+    top: -100px;
+    bottom: ;
+    left: 0;
+    right: 0;  
+} */
+.card {
+    min-height: 200px;
+}
+
+#carousel .overlay .container,
+#carousel .overlay .row{
+
+height: 100%;
+}
+
 
 .contenido {
     padding-top: 80px;
 }
+
