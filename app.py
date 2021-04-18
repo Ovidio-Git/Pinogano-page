@@ -63,6 +63,19 @@ def chivos():
                 
     return render_template('chivos.html')
 
+@app.route('/home')
+def Home():
+    cur = mysql.connection.cursor() # cur permited make queries
+    cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
+    dataframe1 = cur.fetchall()
+    context = {
+        'numeros': dataframe1,
+    }
+    return render_template('casa.html',**context)
+   
+
+
+
 
 if __name__ == '__main__':
     app.run("0.0.0.0",debug=False)

@@ -1,0 +1,181 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="container pt-4"> 
+    <div class="row">
+        <div class="col-md-12 pt-4 pb-4">
+            <h3 class="text-center text-success"><strong>Dashboard</strong></h3>
+        </div>
+        <div class="col-md-6">
+            <h4 class="text-center">test vs test</h4>
+            <div class="card"> 
+                <div class="card-body"> 
+                    <canvas id="tableline" width="500" height="400"></canvas>
+                </div> 
+            </div> 
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-center">test2 vs test2</h4>
+          <div class="card"> 
+              <div class="card-body"> 
+                  <canvas id="chartDiv"  style="max-width: 740px;height: 330px;margin: 0px auto"></canvas>
+              </div> 
+          </div> 
+       </div>
+    </div>
+</div>
+
+<!-- Ejemplo -->
+<script>
+    Chart.defaults.global.responsive = true;
+    Chart.defaults.global.legend.display = false;
+
+    var chartData = {
+        labels : [{% for dato in numeros %}
+               "{{ dato.0 }}",
+              {% endfor %}],
+        datasets : [{
+            label: 'Value',
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(114,147,203,0.2)",
+            borderColor: "rgba(57,106,177,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'mister',
+            pointBorderColor: "rgba(57,106,177,1)",
+            pointBackgroundColor: "#fff",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(57,106,177,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 4,
+            data : [{% for dato in numeros %}
+                    {{ dato.1 }},
+                {% endfor %}],
+            spanGaps: false
+        }]
+    }
+        
+    var ctx = document.getElementById("tableline").getContext("2d");
+
+    var ejemplo1 = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+              }
+            },
+        }
+    });
+</script>
+
+<script>
+    Chart.defaults.global.responsive = true;
+    Chart.defaults.global.legend.display = false;
+
+var ctx = document.getElementById("chartDiv").getContext("2d");
+var chart = new Chart(ctx, { 
+  debug: true, 
+  legend_visible: false, 
+  defaultTooltip_enabled: false, 
+  xAxis_spacingPercentage: 0.4, 
+  yAxis: [ 
+    { 
+      id: 'ax1', 
+      defaultTick: { 
+        padding: 10, 
+        enabled: false
+      }, 
+      customTicks: [350, 600, 700, 800, 850], 
+      line: { 
+        width: 10, 
+  
+        /*Defining the option will enable it.*/
+        breaks: {}, 
+  
+        /*Palette is defined at series level with an ID referenced here.*/
+        color: 'smartPalette:pal1'
+      }, 
+      scale_range: [350, 850] 
+    }, 
+    { 
+      id: 'ax2', 
+      scale_range: [0, 850], 
+      defaultTick: { 
+        padding: 10, 
+        enabled: false
+      }, 
+      customTicks: [0, 300, 600, 700, 800, 850], 
+      line: { 
+        width: 10, 
+        color: 'smartPalette:pal2'
+      } 
+    } 
+  ], 
+  defaultSeries: { 
+    type: 'gauge column roundcaps', 
+    shape: { 
+      label: { 
+        text: '500', 
+        align: 'center', 
+        verticalAlign: 'middle'
+      } 
+    } 
+  }, 
+  series: [ 
+    { 
+      type: 'column roundcaps', 
+      name: 'Temperatures', 
+      yAxis: 'ax1', 
+      palette: { 
+        id: 'pal1', 
+        pointValue: '500', 
+        ranges: [ 
+          { value: 350, color: '#FF5353' }, 
+          { value: 600, color: '#FFD221' }, 
+          { value: 700, color: '#77E6B4' }, 
+          { value: [800, 850], color: '#21D683' } 
+        ] 
+      }, 
+      shape_label: { style: { fontSize: 28 } }, 
+      points: [['x', [350, 720]]] 
+    }, 
+    { 
+      yAxis: 'ax2', 
+      name: 'Temperatures', 
+      palette: { 
+        id: 'pal2', 
+        pointValue: '{850}', 
+        colors: [ 
+          '#ffffd9', 
+          '#edf8b0', 
+          '#c7e9b4', 
+          '#7fcdbb', 
+          '#41b6c3', 
+          '#1d91c0', 
+          '#225ea8', 
+          '#253494', 
+          '#081d58'
+        ] 
+      }, 
+      shape_label: { 
+        text: '500', 
+        style: { fontSize: 28 } 
+      }, 
+      points: [['x', 320]] 
+    } 
+  ] 
+}); 
+
+  
+</script>
+{% endblock %}
+
