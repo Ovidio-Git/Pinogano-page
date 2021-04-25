@@ -10,7 +10,7 @@
             <h4 class="text-center">test vs test</h4>
             <div class="card"> 
                 <div class="card-body"> 
-                    <canvas id="tableline" width="500" height="400"></canvas>
+                    <canvas id="donut" width="500" height="400"></canvas>
                 </div> 
             </div> 
         </div>
@@ -18,14 +18,22 @@
           <h4 class="text-center">test2 vs test2</h4>
           <div class="card"> 
               <div class="card-body"> 
-                  <canvas id="chardiv" width="500" height="400"></canvas>
+                  <canvas id="tableline" width="500" height="400"></canvas>
               </div> 
           </div> 
        </div>
+       <div class="col-md-6">
+        <h4 class="text-center">test3 vs test3</h4>
+        <div class="card"> 
+            <div class="card-body"> 
+                <canvas id="chardiv" width="500" height="400"></canvas>
+            </div> 
+        </div> 
+     </div>
     </div>
 </div>
 
-<!-- Ejemplo -->
+<!-- LIN CHART-->
 <script>
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
@@ -93,31 +101,16 @@
           {% endfor %}],
     datasets : [{
         label: 'Value',
-        fill: true,
-        lineTension: 0.1,
         backgroundColor: "rgba(114,147,203,0.2)",
         borderColor: "rgba(57,106,177,1)",
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'mister',
-        pointBorderColor: "rgba(57,106,177,1)",
-        pointBackgroundColor: "#fff",
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(57,106,177,1)",
-        pointHoverBorderColor: "rgba(220,220,220,1)",
-        pointHoverBorderWidth: 2,
-        pointRadius: 4,
         data : [{% for dato in numeros %}
                 {{ dato.1 }},
-            {% endfor %}],
-        spanGaps: false
+            {% endfor %}]
     }]
-}
-  // </block:setup>
+  }
+  
   var ctx = document.getElementById("chardiv").getContext("2d");
-  // <block:config:0>
- 
+   
   var cof = new Chart(ctx, {
     type: 'bar',
     data: data,
@@ -133,11 +126,36 @@
         },
     }
 });
-  // </block:config>
-  
-
-
 </script>
+
+
+<!-- DONUT GRAPH  -->
+<script>
+  Chart.defaults.global.responsive = true;
+  Chart.defaults.global.legend.display = false;
+  
+  var data = {
+    labels: ['Red'],
+    datasets: [{
+        backgroundColor: "rgba(255,99,132)",
+        data : [100],  
+    }]
+  };
+ 
+  var ctx = document.getElementById("donut").getContext("2d");
+
+  var co = new Chart(ctx, {
+    type: 'doughnut',
+    data: data,
+    options: {
+        cutoutPercentage:73,
+        circumference:Math.PI,      
+        rotation:Math.PI, 
+        responsive: true,
+    }
+  });
+</script>
+
 
 {% endblock %}
 
