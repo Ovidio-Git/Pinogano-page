@@ -58,10 +58,10 @@ def chivos():
             'male':male,
             'feme':feme
         }
-
+        print('data submitted successfuly')
         return render_template('tabel.html', **context)
-                
-    return render_template('chivos.html')
+    return render_template('chivos.html') 
+    return redirect(url_for('chivos.html'))
 
 @app.route('/home')
 def Home():
