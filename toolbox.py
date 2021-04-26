@@ -1,18 +1,21 @@
 class Chivo:
-
+    
+    # INITIALIZED INSTANCE
     def __init__(self, vector, start=None, finish=None):
         self._vector = vector
         self._start  = start
         self._finish = finish
         self.selectionSort()
-       
+
+    # READ DATA FORM        
     def _readfile(self):
         aux = self._vector.split()
         new =  aux[0].replace(',',' ')
         aux = new.split()
         setdata = [int(aux[i]) for i in range(0,len(aux))]
         return setdata
-              
+
+    # ORDINATION DATA FORM 
     def selectionSort(self):
         array = self._readfile()
         n = len(array)
@@ -24,11 +27,13 @@ class Chivo:
             array[i], array[menor] = array[menor], array[i]
         return array
 
+    # GENDERS ORDINATION
     def Genders(self, data):
         self._data = data
         genders = ['Hembra' if self._data[i] <= 80 else 'Macho' for i in range(len(self._data))]
         return genders
 
+    # COUNT GENDERS 
     def totalgenders(self, listt):
         self._listt = listt
         m = f = 0
@@ -39,6 +44,7 @@ class Chivo:
                 m += 1
         return f, m
 
+    # COMPARE DATA 
     def Compare(self):
         target = self.selectionSort()
         base = [num for num in range(int(self._start),int(self._finish)+1)]
@@ -46,5 +52,4 @@ class Chivo:
         B = set(target)
         C = list(A.difference(B))
         return C
-    
-   
+        

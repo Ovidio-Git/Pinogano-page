@@ -2,38 +2,49 @@
 {% block body %}
 
 <div class="container pt-4"> 
-    <div class="row">
-        <div class="col-md-12 pt-4 pb-4">
-            <h3 class="text-center text-success"><strong>Dashboard</strong></h3>
-        </div>
-        <div class="col-md-6">
-            <h4 class="text-center">test vs test</h4>
-            <div class="card"> 
-                <div class="card-body"> 
-                    <canvas id="donut" width="500" height="400"></canvas>
-                </div> 
-            </div> 
-        </div>
-        <div class="col-md-6">
-          <h4 class="text-center">test2 vs test2</h4>
-          <div class="card"> 
-              <div class="card-body"> 
-                  <canvas id="tableline" width="500" height="400"></canvas>
-              </div> 
-          </div> 
-       </div>
-       <div class="col-md-6">
-        <h4 class="text-center">test3 vs test3</h4>
-        <div class="card"> 
-            <div class="card-body"> 
-                <canvas id="chardiv" width="500" height="400"></canvas>
-            </div> 
-        </div> 
-     </div>
+  <div class="row">
+    <div class="col-md-12 pt-4 pb-4">
+      <h3 class="text-center text-success"><strong>Dashboard</strong></h3>
     </div>
+    <div class="col-md-6">
+      <h4 class="text-center">CHART 1</h4>
+      <div class="card"> 
+        <div class="card-body"> 
+          <canvas id="donut" width="500" height="400"></canvas>
+        </div> 
+      </div> 
+    </div>
+    <div class="col-md-6">
+      <h4 class="text-center">CHART 2</h4>
+      <div class="card"> 
+        <div class="card-body"> 
+          <canvas id="tableline" width="500" height="400"></canvas>
+        </div> 
+      </div> 
+    </div>
+    <div class="col-md-6">
+      <h4 class="text-center">CHART 3</h4>
+      <div class="card"> 
+        <div class="card-body"> 
+          <canvas id="chardiv" width="500" height="400"></canvas>
+        </div> 
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4 class="text-center">CHART 4</h4>
+      <div class="card"> 
+        <div class="card-body"> 
+          <canvas id="donut" width="500" height="400"></canvas>
+        </div> 
+      </div> 
+    </div> 
+  </div>
 </div>
 
-<!-- LIN CHART-->
+
+
+
+<!-- LINE GRAPH-->
 <script>
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
@@ -65,9 +76,9 @@
             spanGaps: false
         }]
     }
-        
+       
+    
     var ctx = document.getElementById("tableline").getContext("2d");
-
     var ejemplo1 = new Chart(ctx, {
         type: 'line',
         data: chartData,
@@ -87,13 +98,10 @@
 </script>
 
 
-<!-- GRAPH TYPE BAR -->
+<!-- BAR GRAPH -->
 <script>
   Chart.defaults.global.responsive = true;
   Chart.defaults.global.legend.display = false;
-// <block:setup:1>
- 
-  
 
   var data = {
     labels : [{% for dato in numeros %}
@@ -109,8 +117,8 @@
     }]
   }
   
+
   var ctx = document.getElementById("chardiv").getContext("2d");
-   
   var cof = new Chart(ctx, {
     type: 'bar',
     data: data,
@@ -129,21 +137,21 @@
 </script>
 
 
-<!-- DONUT GRAPH  -->
+<!-- DOUGHNUT GRAPH  -->
 <script>
   Chart.defaults.global.responsive = true;
   Chart.defaults.global.legend.display = false;
   
   var data = {
-    labels: ['Red'],
+    labels: ['Red', 'blue'],
     datasets: [{
-        backgroundColor: "rgba(255,99,132)",
-        data : [100],  
+        backgroundColor: ["rgba(255,99,132)",
+                         "rgba(114,147,203,0.2)"],
+        data : [ {{ test[1] }} , {{ 50 - test[1] }} ],  
     }]
   };
  
   var ctx = document.getElementById("donut").getContext("2d");
-
   var co = new Chart(ctx, {
     type: 'doughnut',
     data: data,
@@ -155,7 +163,6 @@
     }
   });
 </script>
-
 
 {% endblock %}
 
