@@ -76,7 +76,7 @@ def Home():
         'numeros': dataframe1,
         'test': dataframe1[0],
     }
-    return render_template('casa.html',**context)
+    return render_template('dashboard.html',**context)
    
 
 

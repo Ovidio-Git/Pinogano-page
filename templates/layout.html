@@ -7,12 +7,13 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Ejemplo de diseño microelectronico digital">
-        <meta name="keywords" content="Investigación, ingenería electrónica, matemática aplicada, ciencias de la computación">
+        <meta name="description" content="Pinogano 2 la finca de hoy con tecnologia del mañana">
+        <meta name="keywords" content="Pinogano, finca, hacienda, terneros, chivos, vacas, cerdos, hacienda">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
-
+        <!-- <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        
         <!-- Mi Estilo -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
@@ -55,7 +56,6 @@
             {% block body %}
             {% endblock %}
         </div>
-       
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

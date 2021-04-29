@@ -19,26 +19,27 @@
     color: white;   
 }
 
-/* card{
-    position: absolute;
-    z-index: 2;
-    top: -100px;
-    bottom: ;
-    left: 0;
-    right: 0;  
-} */
-.card {
-    min-height: 200px;
-}
 
 #carousel .overlay .container,
 #carousel .overlay .row{
 
-height: 100%;
+    height: 100%;
+
 }
 
 
-.contenido {
-    padding-top: 80px;
+.pren {
+    background-color: #f5f5f5;
 }
+
+.statistics .box {
+	background-color: var(--dk-dark-bg);
+}
+
+.statistics .box i {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+}
+
 
