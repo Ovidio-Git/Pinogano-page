@@ -5,12 +5,12 @@
 <div class="container-fluid pt-4 bg-dark"> 
     <div class="row">
       <div class="col-md-12 pt-4 pb-4">
-        <h3 class="text-center "><strong>Consumo energético</strong></h3>
+        <h3 class="text-center "><strong>Monitoreo energético</strong></h3>
       </div>
       <div class="statistics col-md-4">
         <div class="card text-white bg-ligth mb-3"> 
           <div class="card-body shadow" > 
-            <h5 class="card-title text-success">Primary card title</h5>
+            <h5 class="card-title text-success">Valor pico diario</h5>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div> 
         </div> 
@@ -18,28 +18,28 @@
       <div class="statistics col-md-4">
         <div class="card text-white  mb-3"> 
           <div class="card-body shadow" > 
-            <h5 class="card-title text-danger">Primary card title</h5>
+            <h5 class="card-title text-danger">Consumo mensual</h5>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div> 
         </div> 
       </div>
       <div class="statistics col-md-4">
-        <div class="card text-white bg-primary mb-3"> 
+        <div class="card text-white mb-3"> 
           <div class="card-body shadow" > 
-            <h5 class="card-title">Primary card title</h5>
+            <h5 class="card-title text-primary">Estimado a pagar</h5>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div> 
         </div> 
       </div>
       <div class="col-md-6 ">
-        <div class="card"> 
+        <div class="card mb-3"> 
           <div class="card-body shadow"> 
             <canvas id="donut" width="500" height="400"></canvas>
           </div> 
         </div> 
       </div>
       <div class="col-md-6">
-        <div class="card"> 
+        <div class="card mb-3"> 
           <div class="card-body shadow"> 
             <canvas id="tableline" width="500" height="400"></canvas>
           </div> 
@@ -162,7 +162,7 @@
       datasets: [{
           backgroundColor: ["rgba(255,99,132)",
                            "rgba(114,147,203,0.2)"],
-          data : [ {{ test[1] }} , {{ 50 - test[1] }} ],  
+          data : [ 25 , 75 ],  
       }]
     };
    
