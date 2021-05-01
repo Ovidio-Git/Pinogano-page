@@ -1,6 +1,6 @@
 # Pinogano
 
-Pinogano web-site for a family farm
+Pinogano website for a family farm
 
 ### Requirements
 
@@ -13,4 +13,4 @@ Pinogano web-site for a family farm
 
 ### Links to web-site
 
-[Pinogano web-site](http://pinogano2.mooo.com/)
+[Pinogano website](http://pinogano2.mooo.com/)
