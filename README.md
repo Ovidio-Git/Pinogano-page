@@ -11,6 +11,6 @@ Pinogano website for a family farm
 - [x] mysqlclient==2.0.3
 
 
-### Links to web-site
+### Links to website
 
 [Pinogano website](http://pinogano2.mooo.com/)
