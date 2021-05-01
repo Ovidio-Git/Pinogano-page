@@ -1,6 +1,10 @@
-# Pinogano
+# Pinogano website
 
-Pinogano website for a family farm
+
+
+Website for a family farm from cost cribean colombia
+
+
 
 ### Requirements
 
@@ -9,6 +13,7 @@ Pinogano website for a family farm
 - [x] Flask-MySQLdb==0.2.0
 - [x] Jinja2==2.11.3
 - [x] mysqlclient==2.0.3
+
 
 
 ### Links to website
