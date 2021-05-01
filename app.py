@@ -72,9 +72,10 @@ def Home():
     cur = mysql.connection.cursor() # cur permited make queries
     cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
     dataframe1 = cur.fetchall()
+    testing = 189
     context = {
         'numeros': dataframe1,
-        'test': dataframe1[0],
+        'test': testing,
     }
     return render_template('dashboard.html',**context)
    
