@@ -1,12 +1,14 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-<div class="contenido container pb-4"> 
+<div class="contenido container pb-4">
+    <br><br>
     <div class="row">
-         <div class="col-md-12 pt-1 pb-4">
+        <div class="col-md-12 pt-1 pb-4">
             <h1 class="text-center"><strong>Organizador</strong></h1>
         </div>
     </div>
+    <br>
 </div>
 <form action="/chivos" method="post">
     <div class=" container form-group">
@@ -16,11 +18,11 @@
         <div class="form-group">
             <label class="col-form-label" for="inputDefault">Rango numeros de identificiacion</label>
             <input type="text" name="value_start" class="form-control" placeholder="Numero Inicial" id="inputDefault">
-            <br> 
+            <br>
             <input type="text" name="value_finish" class="form-control" placeholder="Numero Final" id="inputDefault">
             <div class="contenido pb-4 pt-4">
                 <button  type="submit" class="btn btn-block btn-success">Iniciar</button>
-            </div>          
+            </div>
         </div>
     </div>
 </form>

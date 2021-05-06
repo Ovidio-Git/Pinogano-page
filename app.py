@@ -24,7 +24,7 @@ def chivos():
         id_goat  = request.form.get('vector_file')
         start    = request.form.get('value_start')
         finish   = request.form.get('value_finish')
-        # TOOLBOX IMPLEMENTATION 
+        # TOOLBOX IMPLEMENTATION
         output   = Chivo(vector=id_goat, start=start, finish=finish)
         ide      = output.selectionSort()
         genders1 = output.Genders(ide)
@@ -32,8 +32,8 @@ def chivos():
         genders2 = output.Genders(compare)
         feme, male = output.totalgenders(genders1)
         lengt1   = len(ide)
-        lengt2   = len(compare) 
-       
+        lengt2   = len(compare)
+
         # DATABASE IMPLEMENTATION
         cur = mysql.connection.cursor() # cur permited make queries
 
@@ -42,14 +42,14 @@ def chivos():
             mysql.connection.commit()   # execute the query
         cur.execute('SELECT * FROM goats ORDER BY id DESC LIMIT %s',(lengt1,)) # the point in (lengt,) is important!
         dataframe1 = cur.fetchall()
-        
+
         for i in range(lengt2):
             cur.execute('INSERT INTO goats(goat_id, gender, status) VALUES(%s,%s,%s)',(compare[i], genders2[i], 0)) # make a query
             mysql.connection.commit()   # execute the query
         cur.execute('SELECT * FROM goats ORDER BY id DESC LIMIT %s',(lengt2,)) # the point in (lengt,) is important!
         dataframe2 = cur.fetchall()
 
-        cur.close()                     # closed cursor 
+        cur.close()                     # closed cursor
 
         # VARIABLES FOR THE TABLES
         context = {
@@ -60,8 +60,8 @@ def chivos():
             'feme':feme
         }
         return render_template('tabel.html', **context)
-    
-    return render_template('chivos.html') 
+
+    return render_template('chivos.html')
     # return redirect(url_for('chivos.html'))
 
 
@@ -78,7 +78,7 @@ def Home():
         'test': testing,
     }
     return render_template('dashboard.html',**context)
-   
+
 
 
 if __name__ == '__main__':
