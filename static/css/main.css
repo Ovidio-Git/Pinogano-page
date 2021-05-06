@@ -1,5 +1,11 @@
+img {
+    width: 100%; /* or max-width: 100%; */
+    height: auto;
+    }
+
 #main .carousel-inner img {
     max-height: auto;
+    max-width: auto;
     object-fit: cover;
 
 }
@@ -27,12 +33,45 @@
 
 }
 
-
-
-
-.font {
+.font-nav {
     font-size: 30px;
 }
-.fontt{
+
+
+.font-navr{
     font-size: 18px;
+}
+
+.cab {
+    color: gray;
+}
+
+.dfont{
+    font-size: 48px;
+    position: absolute;
+    z-index: 1;
+    top: 42%;
+    left: 38%;
+    font-family: Arial;
+    font-weight: 600;
+}
+
+.money{
+    font-size: 48px;
+    position: absolute;
+    z-index: 1;
+    top: 42%;
+    left: 33%;
+    font-family: Arial;
+    font-weight: 600;
+}
+
+.hauge{
+    font-size: 48px;
+    position: absolute;
+    z-index: 1;
+    top: 70%;
+    left: 40%;
+    font-family: Arial;
+    font-weight: 600;
 }

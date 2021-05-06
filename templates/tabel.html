@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
-{% block body %} 
+{% block body %}
 
 <style>
     td{
-        text-align: center;    
-     }
+        text-align: center;
+    }
 </style>
 <div class="container pt-4">
     <div class="row">
@@ -12,8 +12,8 @@
             <h3 class="text-center pt-4 pb-4">Registro</h3>
             <div class="table-responsive">
                 <!-- TABLE NUMBER 1 -->
-                <table class="table table-hover table-bordered bg-white table-sm">                   
-                    <thead> 
+                <table class="table table-hover table-bordered bg-white table-sm">
+                    <thead>
                         <tr class="table-success text-center">
                             <th scope="col">Num Total</th>
                             <th scope="col">Hembras</th>
@@ -27,10 +27,10 @@
                             <td>{{ male }}</td>
                         </tr>
                     </tbody>
-                </table>    
+                </table>
                 <!-- TABLE NUMBER 2  -->
-                <table class="table table-hover table-bordered bg-white table-sm">                       
-                    <thead> 
+                <table class="table table-hover table-bordered bg-white table-sm">
+                    <thead>
                         <br>
                         <tr class="table-primary text-center">
                             <th scope="col">Numero ID</th>
@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for data in dataframe1 %}  
+                        {% for data in dataframe1 %}
                         <tr>
                             <td>{{ data.1 }}</td>
                             <td>{{ data.2 }}</td>
@@ -53,21 +53,21 @@
             <div class="table-responsive">
                 <!-- TABLE NUMBER 3 -->
                 <table class="table table-hover table-bordered bg-white table-sm">
-                    <thead> 
+                    <thead>
                         <tr class="table-danger text-center">
                             <th scope="col">Numero ID</th>
                             <th scope="col">Genero</th>
                             <th scope="col">Estado</th>
                         </tr>
                     </thead>
-                    <tbody>   
-                        {% for data in dataframe2 %}  
+                    <tbody>
+                        {% for data in dataframe2 %}
                         <tr>
                             <td>{{ data.1 }}</td>
                             <td>{{ data.2 }}</td>
                             <td><img src="{{ url_for('static', filename='images/x.svg') }}" class="img-fluid" ></td>
                         </tr>
-                        {% endfor %}                       
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

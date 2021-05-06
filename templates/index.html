@@ -5,10 +5,10 @@
     <div id="carousel" class="carousel slide  carousel-fade" data-ride="carousel" data-pause="false">
         <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="{{ url_for('static', filename='images/c2.jpg') }}" class="d-block w-100">
+              <img src="{{ url_for('static', filename='images/c2.jpg') }}" alt="carousel 1" class="d-block w-100">
             </div>
             <div class="carousel-item">
-              <img src="{{ url_for('static', filename='images/c1.jpg') }}" class="d-block w-100">
+              <img src="{{ url_for('static', filename='images/c1.jpg') }}" alt="carousel 2" class="d-block w-100">
             </div>
             <div class="overlay">
                 <div class="container">
@@ -26,7 +26,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-3 bg-dark">
     <div class="col">
       <div class="card mb-2 ">
-        <img src="{{ url_for('static', filename='images/cerdo.jpg') }}" class="card-img-top" >
+        <img src="{{ url_for('static', filename='images/cerdo.jpg') }}" alt="cerdo" class="card-img-top" >
         <div class="card-body shadow">
           <h5 class="card-title">Cerdos</h5>
           <p class="card-text">Tenemos los cerdos mejor cuidados de la zona, con instalaciones automatizadas para su adecuado crecimiento.</p>
@@ -35,8 +35,8 @@
     </div>
     <div class="col">
       <div class="card mb-3">
-        <img src="{{ url_for('static', filename='images/vaca.jpg') }}" class="card-img-top">
-        <div class="card-body shadow">
+        <img  src="{{ url_for('static', filename='images/ternero.jpg') }}" alt="ternero" class="card-img-top">
+        <div class="card-body shadow" >
           <h5 class="card-title">Terneros</h5>
           <p class="card-text">Manejamos una gran variedad de terneros de seva finamente criados con un detallado control de crecimiento..</p>
         </div>
@@ -44,7 +44,7 @@
     </div>
     <div class="col">
       <div class="card mb-3" >
-        <img src="{{ url_for('static', filename='images/chivo.jpg') }}" class="card-img-top">
+        <img src="{{ url_for('static', filename='images/chivo.jpg') }}" alt="chivo" class="card-img-top">
         <div class="card-body shadow">
           <h5 class="card-title">Carneros</h5>
           <p class="card-text">Somos los productores con mayor numero de carneros de toda la zona los cuales estan adecuadamente monitoriados y clasificados.</p>

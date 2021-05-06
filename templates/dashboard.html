@@ -10,8 +10,8 @@
       <div class="statistics col-md-4">
         <div class="card text-white bg-ligth mb-3">
           <div class="card-body shadow" >
-            <h5 class="card-title text-success">Valor pico diario</h5>
-            <div class="text-dark position-absolute top-50 start-50 text-center fw-bold">er {{ test }}</div>
+            <h5 class="card-title text-secondary">Valor pico diario</h5>
+            <div  class="text-primary  dfont">{{ test }} W </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -19,7 +19,8 @@
       <div class="statistics col-md-4">
         <div class="card text-white  mb-3">
           <div class="card-body shadow" >
-            <h5 class="card-title text-danger">Consumo mensual</h5>
+            <h5 class="card-title text-secondary">Consumo mensual</h5>
+            <div class="text-warning position-absolute text-center dfont">{{ test*3 }} W </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -27,7 +28,8 @@
       <div class="statistics col-md-4">
         <div class="card text-white mb-3">
           <div class="card-body shadow" >
-            <h5 class="card-title text-primary">Estimado a pagar</h5>
+            <h5 class="card-title text-secondary">Estimado a pagar</h5>
+            <div class="text-success position-absolute text-center money">$ {{ test*1000}}  </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -35,6 +37,8 @@
       <div class="col-md-6 ">
         <div class="card mb-3">
           <div class="card-body shadow">
+            <h5 class="card-title text-secondary">Consumo</h5>
+            <div  class="text-danger hauge">2300</div>
             <canvas id="donut" width="500" height="400"></canvas>
           </div>
         </div>
@@ -42,6 +46,7 @@
       <div class="col-md-6">
         <div class="card mb-3">
           <div class="card-body shadow">
+            <h5 class="card-title text-secondary">Histórico</h5>
             <canvas id="tableline" width="500" height="400"></canvas>
           </div>
         </div>
