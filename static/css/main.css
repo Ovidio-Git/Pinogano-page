@@ -1,7 +1,4 @@
-img {
-    width: 100%; /* or max-width: 100%; */
-    height: auto;
-    }
+
 
 #main .carousel-inner img {
     max-height: auto;
