@@ -61,13 +61,13 @@ img {
     position: absolute;
     z-index: 1;
     top: 42%;
-    left: 33%;
+    left: 25%;
     font-family: Arial;
     font-weight: 600;
 }
 
 .hauge{
-    font-size: 48px;
+    font-size: 5vw;
     position: absolute;
     z-index: 1;
     top: 70%;
