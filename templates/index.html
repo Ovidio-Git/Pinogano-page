@@ -22,36 +22,38 @@
         </div>
     </div>
 </main>
-<br>
-<div class="row row-cols-1 row-cols-md-3 g-3 bg-dark">
-    <div class="col">
-      <div class="card mb-2 ">
-        <img src="{{ url_for('static', filename='images/cerdo.jpg') }}" alt="cerdo" class="card-img-top" >
-        <div class="card-body shadow">
-          <h5 class="card-title">Cerdos</h5>
-          <p class="card-text">Tenemos los cerdos mejor cuidados de la zona, con instalaciones automatizadas para su adecuado crecimiento.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card mb-3">
-        <img  src="{{ url_for('static', filename='images/ternero.jpg') }}" alt="ternero" class="card-img-top">
-        <div class="card-body shadow" >
-          <h5 class="card-title">Terneros</h5>
-          <p class="card-text">Manejamos una gran variedad de terneros de seva finamente criados con un detallado control de crecimiento..</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card mb-3" >
-        <img src="{{ url_for('static', filename='images/chivo.jpg') }}" alt="chivo" class="card-img-top">
-        <div class="card-body shadow">
-          <h5 class="card-title">Carneros</h5>
-          <p class="card-text">Somos los productores con mayor numero de carneros de toda la zona los cuales estan adecuadamente monitoriados y clasificados.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-{% endblock %}
+<div class="container-fluid pt-4">
+    <div class="row">
+      <div class="statistics col-md-4">
+        <div class="card text-dark bg-ligth mb-3">
+          <img src="{{ url_for('static', filename='images/cerdo.jpg') }}" alt="cerdo" class="card-img-top" >
+          <div class="card-body shadow" >
+            <h5 class="card-title">Cerdos</h5>
+            <p class="card-text">Tenemos los cerdos mejor cuidados de la zona, con instalaciones automatizadas para su adecuado crecimiento.</p>
+          </div>
+        </div>
+      </div>
+      <div class="statistics col-md-4">
+        <div class="card text-dark  mb-3">
+          <img  src="{{ url_for('static', filename='images/ternero.jpg') }}" alt="ternero" class="card-img-top">
+          <div class="card-body shadow" >
+            <h5 class="card-title">Terneros</h5>
+            <p class="card-text">Manejamos una gran variedad de terneros de seva finamente criados con un detallado control de crecimiento..</p>
+          </div>
+        </div>
+      </div>
+      <div class="statistics col-md-4">
+        <div class="card text-dark mb-3">
+          <img src="{{ url_for('static', filename='images/chivo.jpg') }}" alt="chivo" class="card-img-top">
+          <div class="card-body shadow" >
+            <h5 class="card-title">Carneros</h5>
+            <p class="card-text">Somos los productores con mayor numero de carneros de toda la zona los cuales estan adecuadamente monitoriados y clasificados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  {% endblock %}
 
