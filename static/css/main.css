@@ -1,4 +1,37 @@
 
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #02b875;
+    border-radius: 50%;
+    border-top: 16px solid #ffffff;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+#container-loader{
+    background-color:#02b875;
+    height :100%;
+    width:100%;
+    position:fixed;
+    z-index: 10000;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 #main .carousel-inner img {
     max-height: auto;
@@ -30,20 +63,28 @@
 
 }
 
+/* card animation */
+.card:hover{
+    transition: 0.3s;
+    box-shadow: 0 2px 15px 0 rgba(0,0,0,0.2);
+    }
+
+/* pinogano font */
 .font-nav {
     font-size: 30px;
 }
 
-
+/* links pinogno fonts (home/dashboard) */
 .font-navr{
     font-size: 18px;
 }
 
+/* background color dashboard */
 .cab {
     background-color: #f9f9f9;
-
 }
 
+/* font cards consumo and valor pico */
 .dfont{
     font-size: clamp(2.6rem, 4vw, 58px);  /* font responsive*/
     position: absolute;
@@ -54,6 +95,7 @@
     font-weight: 600;
 }
 
+/* font card money */
 .money{
     font-size: clamp(2.6rem, 4vw, 58px);
     position: absolute;
@@ -64,6 +106,7 @@
     font-weight: 600;
 }
 
+/* font donut test */
 .hauge{
     font-size: 5vw;
     position: absolute;
@@ -72,11 +115,4 @@
     left: 40%;
     font-family: Arial;
     font-weight: 600;
-}
-
-.test{
-    border-radius: 50px;
-background: #e0e0e0;
-box-shadow:  20px -20px 60px #bebebe,
-             -20px 20px 60px #ffffff;
 }

@@ -11,8 +11,8 @@
         <meta name="keywords" content="Pinogano, finca, hacienda, terneros, chivos, vacas, cerdos, hacienda">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"> -->
+        <!-- <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 
         <!-- Mi Estilo -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
@@ -26,13 +26,15 @@
 
     </head>
     <body>
+        <div id="container-loader">
+            <div id="loader"></div>
+        </div>
         <header class="bg-primary">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark  " fond = "10">
                 <a class="navbar-brand font-nav" href="/">Pinogano</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -56,6 +58,16 @@
             {% block body %}
             {% endblock %}
         </div>
+
+        <script>
+            window.onload = function(){
+                var contaner = document.getElementById(
+                    'container-loader'
+                )
+                contaner.style.visibility = 'hidden';
+                contaner.style.opacity = '0';
+            }
+        </script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
