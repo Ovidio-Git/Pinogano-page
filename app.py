@@ -72,16 +72,16 @@ def Home():
     if request.method == 'POST':
         print("what's up bro ")
         return render_template('chivos.html')
-
-    cur = mysql.connection.cursor() # cur permited make queries
-    cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
-    dataframe1 = cur.fetchall()
-    testing = 189
-    context = {
-        'numeros': dataframe1,
-        'test': testing,
-    }
-    return render_template('dashboard.html',**context)
+    else:
+        cur = mysql.connection.cursor() # cur permited make queries
+        cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
+        dataframe1 = cur.fetchall()
+        testing = 189
+        context = {
+            'numeros': dataframe1,
+            'test': testing,
+        }
+        return render_template('dashboard.html',**context)
 
 
 # teting for receive data of esp8266
