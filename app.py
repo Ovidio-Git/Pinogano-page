@@ -69,6 +69,8 @@ def chivos():
 @app.route('/metrics')
 def Home():
     # DATABASE QUERIES
+    if request.method == 'POST':
+        print("what's up bro ")
     cur = mysql.connection.cursor() # cur permited make queries
     cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
     dataframe1 = cur.fetchall()
@@ -79,8 +81,9 @@ def Home():
     }
     return render_template('dashboard.html',**context)
 
-
-
+# teting for receive data of esp8266
+# first we need make a post request for sending data to server
+# the problem is how to receive this data
 if __name__ == '__main__':
     #app.run("0.0.0.0",debug=False)
     app.run()

@@ -1,21 +1,22 @@
 
 #loader {
     position: absolute;
-    left: 50%;
+    left: 52%;
     top: 50%;
     z-index: 1;
     width: 120px;
     height: 120px;
     margin: -76px 0 0 -76px;
-    border: 16px solid #02b875;
+    border: 16px solid #ffffff;
     border-radius: 50%;
-    border-top: 16px solid #ffffff;
+    border-top: 16px solid #02b875;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 1s linear infinite;
 }
 
 #container-loader{
-    background-color:#02b875;
+
+    background-color:#ffffff;
     height :100%;
     width:100%;
     position:fixed;

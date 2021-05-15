@@ -51,17 +51,8 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-md-6">
-        <h4 class="text-center">CHART 3</h4>
-        <div class="card">
-          <div class="card-body">
-            <canvas id="chardiv" width="100" height="100"></canvas>
-          </div>
-        </div>
-      </div> -->
-
     </div>
-  </div>
+</div>
 
 
 
@@ -116,45 +107,6 @@
           }
       });
 
-  </script>
-
-
-  <!-- BAR GRAPH -->
-  <script>
-    Chart.defaults.global.responsive = true;
-    Chart.defaults.global.legend.display = false;
-
-    var data = {
-      labels : [{% for dato in numeros %}
-                "{{ dato.0 }}",
-            {% endfor %}],
-      datasets : [{
-          label: 'Value',
-          backgroundColor: "rgba(114,147,203,0.2)",
-          borderColor: "rgba(57,106,177,1)",
-          data : [{% for dato in numeros %}
-                  {{ dato.1 }},
-              {% endfor %}]
-      }]
-    }
-
-
-    var ctx = document.getElementById("chardiv").getContext("2d");
-    var cof = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-            title: {
-              display: true,
-            }
-          },
-      }
-  });
   </script>
 
 
