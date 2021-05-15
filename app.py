@@ -86,7 +86,7 @@ def Home():
 @app.route('/metrics/<data>', methods=['POST'])
 def esp(data):
     # DATABASE QUERIES
-    return data
+    return "hola"
 
 if __name__ == '__main__':
     #app.run("0.0.0.0",debug=False)
