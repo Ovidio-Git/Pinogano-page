@@ -66,11 +66,13 @@ def chivos():
 
 
 #    ROUTE METRICS PAGE
-@app.route('/metrics')
+@app.route('/metrics', methods=['GET','POST'])
 def Home():
     # DATABASE QUERIES
     if request.method == 'POST':
         print("what's up bro ")
+        return render_template('chivos.html')
+
     cur = mysql.connection.cursor() # cur permited make queries
     cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
     dataframe1 = cur.fetchall()
@@ -80,6 +82,7 @@ def Home():
         'test': testing,
     }
     return render_template('dashboard.html',**context)
+
 
 # teting for receive data of esp8266
 # first we need make a post request for sending data to server
