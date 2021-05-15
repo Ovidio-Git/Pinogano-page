@@ -83,10 +83,11 @@ def Home():
         }
         return render_template('dashboard.html',**context)
 
+@app.route('/metrics/<data>', methods=['POST'])
+def esp(data):
+    # DATABASE QUERIES
+    return data
 
-# teting for receive data of esp8266
-# first we need make a post request for sending data to server
-# the problem is how to receive this data
 if __name__ == '__main__':
     #app.run("0.0.0.0",debug=False)
     app.run()
