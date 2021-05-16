@@ -11,7 +11,7 @@
         <div class="card text-white bg-ligth mb-3">
           <div class="card-body shadow">
             <h5 class="card-title text-secondary">Valor pico diario</h5>
-            <div  class="text-primary  dfont">{{ test }} W </div>
+            <div  class="text-primary  dfont">{{ data }} W </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="card text-white  mb-3">
           <div class="card-body shadow" >
             <h5 class="card-title text-secondary">Consumo mensual</h5>
-            <div class="text-warning position-absolute text-center dfont">{{ test*3 }} W </div>
+            <div class="text-warning position-absolute text-center dfont">{{ data*3 }} W </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="card text-white mb-3">
           <div class="card-body shadow" >
             <h5 class="card-title text-secondary">Estimado a pagar</h5>
-            <div class="text-success position-absolute text-center money">$ {{ test}}.000  </div>
+            <div class="text-success position-absolute text-center money">$ {{ data }}.000  </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -62,7 +62,7 @@
       Chart.defaults.global.legend.display = false;
 
       var chartData = {
-          labels : [{% for dato in numeros %}
+          labels : [{% for dato in datacurrent %}
                 "{{ dato.0 }}",
                 {% endfor %}],
           datasets : [{
@@ -82,7 +82,7 @@
               pointHoverBorderColor: "rgba(220,220,220,1)",
               pointHoverBorderWidth: 2,
               pointRadius: 4,
-              data : [{% for dato in numeros %}
+              data : [{% for dato in datacurrent %}
                       {{ dato.1 }},
                   {% endfor %}],
               spanGaps: false
@@ -120,7 +120,7 @@
       datasets: [{
           backgroundColor: ["rgba(255,99,132)",
                           "rgba(114,147,203,0.2)"],
-          data : [ 25 , 75 ],
+          data : [ {{ data }} , {{ 3500 - data}} ],
       }]
     };
 

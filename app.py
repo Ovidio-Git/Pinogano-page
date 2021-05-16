@@ -35,6 +35,7 @@ def chivos():
         lengt2   = len(compare)
 
         # DATABASE IMPLEMENTATION
+        app.config['MYSQL_DB'] = 'history_goat'
         cur = mysql.connection.cursor() # cur permited make queries
 
         for i in range(lengt1):
@@ -66,27 +67,30 @@ def chivos():
 
 
 #    ROUTE METRICS PAGE
-@app.route('/metrics', methods=['GET','POST'])
+@app.route('/metrics', methods=['GET'])
 def Home():
-    # DATABASE QUERIES
-    if request.method == 'POST':
-        print("what's up bro ")
-        return render_template('chivos.html')
-    else:
-        cur = mysql.connection.cursor() # cur permited make queries
-        cur.execute('SELECT * FROM goats LIMIT 20') # the point in (lengt,) is important!
-        dataframe1 = cur.fetchall()
-        testing = 189
-        context = {
-            'numeros': dataframe1,
-            'test': testing,
+    app.config['MYSQL_DB'] = 'metrics'
+    cur = mysql.connection.cursor() # cur permited make queries
+    cur.execute('SELECT * FROM currents') # the point in (lengt,) is important!
+    dataframe1 = cur.fetchall()
+    sensor = dataframe1[-1][1]
+    context = {
+        'datacurrent': dataframe1,
+        'data': sensor,
         }
-        return render_template('dashboard.html',**context)
+    return render_template('dashboard.html',**context)
 
-@app.route('/metrics/<data>', methods=['POST'])
-def esp(data):
-    # DATABASE QUERIES
-    return "hola"
+
+# RECEIVE ESP8266 DATA
+@app.route('/metrics/<sensor>', methods=['POST'])
+def esp(sensor):
+    #    DATABASE IMPLEMENTATION
+    app.config['MYSQL_DB'] = 'metrics'
+    cur = mysql.connection.cursor()
+    cur.execute('INSERT INTO currents(value) VALUES(%s)',(sensor,))    # make a query
+    mysql.connection.commit()   # execute the query
+    return "receive"
+
 
 if __name__ == '__main__':
     #app.run("0.0.0.0",debug=False)
