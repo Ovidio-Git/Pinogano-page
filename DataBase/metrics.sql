@@ -22,3 +22,5 @@ CREATE TABLE IF NOT EXISTS currents_months(
 	created_at DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 
 );
+
+
