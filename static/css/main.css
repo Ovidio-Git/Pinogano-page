@@ -90,16 +90,23 @@
     font-size: clamp(2.6rem, 4vw, 58px);  /* font responsive*/
     position: absolute;
     z-index: 1;
+    color:#1cbfe4;
     top: 42%;
     left: 38%;
     font-family: Arial;
     font-weight: 600;
 }
 
+.cl{
+    color:#25505a;
+}
+/* morado for the consumo #EB1A69 */
+
 /* font card money */
 .money{
     font-size: clamp(2.6rem, 4vw, 58px);
     position: absolute;
+    color:#fab75a;
     z-index: 1;
     top: 42%;
     left: 25%;
@@ -107,13 +114,36 @@
     font-weight: 600;
 }
 
-/* font donut test */
-.hauge{
-    font-size: 5vw;
+.posi{
     position: absolute;
-    z-index: 1;
-    top: 70%;
-    left: 40%;
+}
+/* font center donut */
+.hauge{
+    font-size: clamp(1.6rem, 4vw, 48px);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#28c289;
+    top: 68%;
+    left: 45%;
     font-family: Arial;
     font-weight: 600;
+}
+
+
+.chartWrapper {
+    position: relative;
+}
+
+.chartWrapper > canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events:none;
+}
+
+.chartAreaWrapper {
+    width: auto;
+    overflow-x: scroll;
 }

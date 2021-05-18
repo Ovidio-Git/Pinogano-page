@@ -5,13 +5,13 @@
 <div class="container-fluid pt-4 cab">
     <div class="row">
       <div class="col-md-12 pt-4 pb-4">
-        <h3 class="text-center "><strong>Monitoreo energético</strong></h3>
+        <h3 class="text-center cl"><strong>Monitoreo energético</strong></h3>
       </div>
       <div class="statistics col-md-4">
         <div class="card text-white bg-ligth mb-3">
           <div class="card-body shadow">
             <h5 class="card-title text-secondary">Valor pico diario</h5>
-            <div  class="text-primary  dfont">{{ data }} W </div>
+            <div  class="dfont">{{ data }} W </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="card text-white  mb-3">
           <div class="card-body shadow" >
             <h5 class="card-title text-secondary">Consumo mensual</h5>
-            <div class="text-warning position-absolute text-center dfont">{{ data*3 }} W </div>
+            <div class="position-absolute text-center dfont">{{ data*3 }} W </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="card text-white mb-3">
           <div class="card-body shadow" >
             <h5 class="card-title text-secondary">Estimado a pagar</h5>
-            <div class="text-success position-absolute text-center money">$ {{ data }}.000  </div>
+            <div class=" position-absolute text-center money">$ {{ data }}.000  </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title text-secondary">Consumo</h5>
-            <!-- <div  class="text-danger hauge">230</div> -->
+            <div class="position-absolute hauge posi">{{ data }} </div>
             <canvas id="donut" width="500" height="400"></canvas>
           </div>
         </div>
@@ -63,12 +63,12 @@
 
       var chartData = {
           labels : [{% for dato in datacurrent %}
-                "{{ dato.0 }}",
+                "{{ dato.2 }}",
                 {% endfor %}],
           datasets : [{
-              label: 'Value',
+              label: 'Vatios',
               fill: true,
-              lineTension: 0.1,
+              lineTension: 0.2,
               backgroundColor: "rgba(114,147,203,0.2)",
               borderColor: "rgba(57,106,177,1)",
               borderCapStyle: 'butt',
@@ -96,14 +96,18 @@
           data: chartData,
           options: {
               responsive: true,
-              plugins: {
-                legend: {
-                  position: 'top',
-                },
-                title: {
-                  display: true,
-                }
-              },
+              scales: {
+                xAxes: [{
+                    scaleLabel: {
+                    display: true,
+                    labelString: 'Tiempo'
+                  },
+                    ticks: {
+                      display: false //this will remove only the label
+                    }
+                }],
+            }
+
           }
       });
 
@@ -116,10 +120,10 @@
     Chart.defaults.global.legend.display = false;
 
     var data = {
-      labels: ['Red', 'blue'],
+      labels: ['Consumo', 'Sin consumir'],
       datasets: [{
-          backgroundColor: ["rgba(255,99,132)",
-                          "rgba(114,147,203,0.2)"],
+          backgroundColor: ["rgba(48, 207, 149, 1)",
+                            "rgba(114,147,203,0.2)"],
           data : [ {{ data }} , {{ 3500 - data}} ],
       }]
     };
