@@ -73,9 +73,12 @@ def Home():
     cur = mysql.connection.cursor() # cur permited make queries
     cur.execute('SELECT * FROM currents') # the point in (lengt,) is important!
     dataframe1 = cur.fetchall()
+    cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
+    max_value = cur.fetchall()
     sensor = dataframe1[-1][1]
     context = {
         'datacurrent': dataframe1,
+        'max_value':max_value,
         'data': sensor,
         }
     return render_template('dashboard.html',**context)
