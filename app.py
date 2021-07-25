@@ -78,7 +78,7 @@ def Home():
     sensor = dataframe1[-1][1]
     context = {
         'datacurrent': dataframe1,
-        'max_value':max_value,
+        'max_value':max_value[0][0],
         'data': sensor,
         }
     return render_template('dashboard.html',**context)
