@@ -75,10 +75,13 @@ def Home():
     dataframe1 = cur.fetchall()
     cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
     max_value = cur.fetchall()
+    cur.execute('SELECT AVG(value) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()') 
+    average_wh  = cur.fetchall();
     sensor = dataframe1[-1][1]
     context = {
         'datacurrent': dataframe1,
         'max_value':max_value[0][0],
+        'average_wh':average_wh ;
         'data': sensor,
         }
     return render_template('dashboard.html',**context)
