@@ -81,7 +81,7 @@ def Home():
     context = {
         'datacurrent': dataframe1,
         'max_value':max_value[0][0],
-        'average_wh':average_wh ;
+        'average_wh':average_wh ,
         'data': sensor,
         }
     return render_template('dashboard.html',**context)
