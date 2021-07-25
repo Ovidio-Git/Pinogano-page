@@ -19,8 +19,8 @@
       <div class="statistics col-md-4">
         <div class="card text-white  mb-3">
           <div class="card-body shadow" >
-            <h5 class="card-title text-secondary">Consumo mensual</h5>
-            <div class="position-absolute text-center dfont">{{ data*3 }} W </div>
+            <h5 class="card-title text-secondary">Consumo (Wh)</h5>
+            <div class="position-absolute text-center dfont">{{ average_wh }} Wh </div>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -37,7 +37,7 @@
       <div class="col-md-6 ">
         <div class="card mb-3">
           <div class="card-body shadow">
-            <h5 class="card-title text-secondary">Consumo</h5>
+            <h5 class="card-title text-secondary">Consumo (W) </h5>
             <div class="position-absolute hauge posi">{{ data }} </div>
             <canvas id="donut" width="500" height="400"></canvas>
           </div>
