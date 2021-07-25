@@ -78,11 +78,13 @@ def Home():
     cur.execute('SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
     average_wh  = cur.fetchall();
     sensor = dataframe1[-1][1]
+    price = (average_wh * 0.590)
     context = {
         'datacurrent': dataframe1,
         'max_value':max_value[0][0],
         'average_wh':average_wh[0][0] ,
         'data': sensor,
+        'price': price
         }
     return render_template('dashboard.html',**context)
 
