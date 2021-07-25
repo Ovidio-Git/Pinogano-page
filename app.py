@@ -71,7 +71,7 @@ def chivos():
 def Home():
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor() # cur permited make queries
-    cur.execute('SELECT * FROM currents') # the point in (lengt,) is important!
+    cur.execute('SELECT * FROM currents WHERE DATE(created_at) = CURDATE()') # the point in (lengt,) is important!
     dataframe1 = cur.fetchall()
     cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
     max_value = cur.fetchall()
