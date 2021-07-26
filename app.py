@@ -14,8 +14,9 @@ mysql = MySQL(app)
 
 
 def _datos(cur):
-    cur = mysql.connection.cursor()
     return "ni damier"
+    cur = mysql.connection.cursor()
+    
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
     return "listo"
