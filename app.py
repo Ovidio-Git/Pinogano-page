@@ -14,8 +14,8 @@ mysql = MySQL(app)
 
 
 def _datos(cur):
-    cur.execute(
-        'SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
     json_data = json.dumps(
         {'fecha': datos_tiempo_real[0][0], 'value1': datos_tiempo_real[0][1]})
@@ -105,8 +105,8 @@ def Home():
 
 @app.route('/datos_monitoreo')
 def datos_monitoreo():
-    cur = mysql.get_db().cursor()
-    enviar = _datos(cur)
+    
+    enviar = _datos()
     return Response(stream_with_context(enviar), mimetype='text/event-stream')
 
 
