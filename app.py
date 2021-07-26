@@ -101,7 +101,7 @@ def Home():
 
 
 
-@app.route('/data_sensor', methods=['GET'])
+@app.route('/data_sensor', methods=['GET','POST'])
 def data_sensor():
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
