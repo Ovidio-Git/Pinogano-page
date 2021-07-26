@@ -113,7 +113,7 @@ def data_sensor():
     })
     
    
-    return stream_with_context(data),{'Mimetype':'text/event-stream'}
+    return data,{'Mimetype':'text/event-stream'}
     
 
 
