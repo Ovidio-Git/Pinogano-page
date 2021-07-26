@@ -14,12 +14,11 @@ mysql = MySQL(app)
 
 
 def _datos(cur):
-    return "ni damier"
+    app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
-    
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
-    return "listo"
+ 
     json_data = json.dumps(
         {'fecha': datos_tiempo_real[0][0], 'value1': datos_tiempo_real[0][1]})
     yield f"data:{json_data}\n\n"
@@ -106,11 +105,9 @@ def Home():
         }
     return render_template('dashboard.html',**context)
 
-@app.route('/datos_monitoreo')
-def datos_monitoreo():
-    
-    enviar = _datos()
-    return Response(stream_with_context(enviar), mimetype='text/event-stream')
+@app.route('/data_sensor')
+def data_sensor():
+    return Response(stream_with_context(_datos()), mimetype='text/event-stream')
 
 
 # RECEIVE ESP8266 DATA
