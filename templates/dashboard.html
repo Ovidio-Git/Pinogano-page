@@ -58,75 +58,89 @@
 
   <!-- LINE GRAPH-->
   <script>
-      Chart.defaults.global.responsive = true;
-      Chart.defaults.global.legend.display = false;
 
-      var chartData = {
-          labels : [{% for dato in datacurrent %}
+      $(document).ready(function () {
+        const config = {
+            type: 'line',
+            data: {
+                labels : [{% for dato in datacurrent %}
                 "{{ dato.2 }}",
                 {% endfor %}],
-          datasets : [{
-              label: 'Vatios',
-              fill: true,
-              lineTension: 0.2,
-              backgroundColor: "rgba(114,147,203,0.2)",
-              borderColor: "rgba(57,106,177,1)",
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'mister',
-              pointBorderColor: "rgba(57,106,177,1)",
-              pointBackgroundColor: "#fff",
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(57,106,177,1)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointHoverBorderWidth: 2,
-              pointRadius: 4,
-              data : [{% for dato in datacurrent %}
-                      {{ dato.1 }},
-                  {% endfor %}],
-              spanGaps: false
-          }]
-      }
-
-
-      var ctx = document.getElementById("tableline").getContext("2d");
-      var ejemplo1 = new Chart(ctx, {
-          type: 'line',
-          data: chartData,
-          options: {
-              responsive: true,
-              scales: {
-                xAxes: [{
-                    scaleLabel: {
-                    display: true,
-                    labelString: 'Tiempo'
-                  },
-                    ticks: {
-                      display: false //this will remove only the label
-                    }
+                datasets : [{
+                label: 'Vatios',
+                fill: true,
+                lineTension: 0.2,
+                backgroundColor: "rgba(114,147,203,0.2)",
+                borderColor: "rgba(57,106,177,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'mister',
+                pointBorderColor: "rgba(57,106,177,1)",
+                pointBackgroundColor: "#fff",
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(57,106,177,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 4,
+                data : [{% for dato in datacurrent %}
+                        {{ dato.1 }},
+                    {% endfor %}],
+                spanGaps: false
                 }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Fecha de adquisición'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Unidad'
+                        }
+                    }]
+                }
             }
-          }
-        })
+        };
+
+        const context = document.getElementById('tableline').getContext('2d');
 
         const lineChart = new Chart(context, config);
+
         const source = new EventSource("/metrics");
+
         source.onmessage = function (event) {
-        const data = JSON.parse(event.data);
-        if (config.data.labels.length == 5) {
-          config.data.labels.shift();
-          config.data.datasets[0].data.shift();
+            const data = JSON.parse(event.data);
+
+            if (config.data.labels.length == 5) {
+                config.data.labels.shift();
+                config.data.datasets[0].data.shift();
+            }
+
+            config.data.labels.push(data.fecha);
+            config.data.datasets[0].data.push(data.tableline);
+            lineChart.update();
         }
+    });
 
-    config.data.labels.push(data.fecha);
-    config.data.datasets[0].data.push(data.tableline);
-    lineChart.update();
-}
-
-        
-        
-        ;
 
   </script>
 
