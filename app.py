@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect,request, redirect, url_for, Response, stream_with_context
+from flask import Flask, render_template, redirect,request, redirect, url_for, Response, stream_with_context,  jsonify
 from flask_mysqldb import MySQL
 import json
 from toolbox import Chivo
@@ -107,6 +107,14 @@ def Home():
 
 @app.route('/data_sensor')
 def data_sensor():
+    app.config['MYSQL_DB'] = 'metrics'
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
+    datos_tiempo_real = cur.fetchall()
+    return jsonfy {
+            'data': {'fecha': datos_tiempo_real[0][0],
+                    'value1': datos_tiempo_real[0][1]}
+    }
     return Response(stream_with_context(_datos()), mimetype='text/event-stream')
 
 
