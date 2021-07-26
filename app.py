@@ -16,13 +16,11 @@ mysql = MySQL(app)
 
 def _datos(cur):
     cur = mysql.connection.cursor()
-    cur.execute(
-        'SELECT fecha_adquisicion, numero1, numero2 FROM datos_tiempo_real WHERE id = (SELECT MAX(id) FROM datos_tiempo_real)')
+    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
-
     json_data = json.dumps(
-        {'fecha': datos_tiempo_real[0][0], 'numero1': datos_tiempo_real[0][1], 'numero2': datos_tiempo_real[0][2]})
-
+        {'fecha': datos_tiempo_real[0][0], 'numero1': datos_tiempo_real[0][1], 'numero2': datos_tiempo_real[0][2]}
+    )
     yield f"data:{json_data}\n\n"
 
     
@@ -109,10 +107,7 @@ def Home():
 
 @app.route('/datos_monitoreo', methods=['GET'])
 def datos_monitoreo():
-    cur = mysql.get_db().cursor()
-
     enviar = _datos(cur)
-
     return Response(stream_with_context(enviar), mimetype='text/event-stream')
 
 
