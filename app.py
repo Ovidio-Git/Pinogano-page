@@ -75,8 +75,9 @@ def Home():
     dataframe1 = cur.fetchall()
     cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
     max_value = cur.fetchall()
-    cur.execute('SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
-    average_wh  = cur.fetchall();
+    #cur.execute('if SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
+    #average_wh  = cur.fetchall();
+    average_wh = 20
     sensor = dataframe1[-1][1]
     price_wh = (average_wh [0][0]) * (0.590)
     context = {
