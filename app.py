@@ -107,7 +107,7 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()
-    data = jsonify ({
+    data = json.dumps ({
             'data': {'fecha': data_time[0][0],
                     'value1': data_time[0][1]}
     })
