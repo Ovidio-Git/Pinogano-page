@@ -79,7 +79,7 @@ def Home():
     average_wh  = cur.fetchall();
     sensor = dataframe1[-1][1]
     if average_wh [0][0] != None:
-        price_wh = float(average_wh [0][0]) * (0.590)
+        price_wh = round( float(average_wh [0][0]) * (0.590), 2)
     else:
         price_wh = 0
     context = {
