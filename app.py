@@ -112,7 +112,7 @@ def data_sensor():
                     'value1': data_time[0][1]}
     })
     
-    return data, {'mimetype':'text/event-stream'},{'Content-Type': 'application/json'}
+    return stream_with_context(data),{'Content-Type': 'application/json'}
 
 
 # RECEIVE ESP8266 DATA
