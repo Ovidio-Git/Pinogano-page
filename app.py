@@ -107,15 +107,11 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()
-    #return jsonify ({
-    #        'data': {'fecha': data_time[0][0],
-    #                'value1': data_time[0][1]}
-    #})
-    aux = jsonify ({
-             'data': {'fecha': data_time[0][0],
+    return jsonify ({
+            'data': {'fecha': data_time[0][0],
                     'value1': data_time[0][1]}
     })
-    return Response(stream_with_context(aux)  ,mimetype='text/event-stream')
+
 
 # RECEIVE ESP8266 DATA
 @app.route('/metrics/<sensor>', methods=['POST'])
