@@ -58,35 +58,21 @@
 
   <!-- LINE GRAPH-->
   <script>
+    Chart.defaults.global.responsive = true;
+    Chart.defaults.global.legend.display = false;
 
-      $(document).ready(function () {
+
+    $(document).ready(function () {
         const config = {
             type: 'line',
             data: {
-                labels : [{% for dato in datacurrent %}
-                "{{ dato.2 }}",
-                {% endfor %}],
-                datasets : [{
-                label: 'Vatios',
-                fill: true,
-                lineTension: 0.2,
-                backgroundColor: "rgba(114,147,203,0.2)",
-                borderColor: "rgba(57,106,177,1)",
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'mister',
-                pointBorderColor: "rgba(57,106,177,1)",
-                pointBackgroundColor: "#fff",
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(57,106,177,1)",
-                pointHoverBorderColor: "rgba(220,220,220,1)",
-                pointHoverBorderWidth: 2,
-                pointRadius: 4,
-                data : [{% for dato in datacurrent %}
-                        {{ dato.1 }},
-                    {% endfor %}],
-                spanGaps: false
+                labels: [],
+                datasets: [{
+                    label: "Potencia",
+                    backgroundColor: "rgb(132,186,91,0.2)",
+                    borderColor: "rgb(62,150,81,1)",
+                    data: [],
+                    fill: false,
                 }],
             },
             options: {
@@ -107,7 +93,7 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Fecha de adquisición'
+                            labelString: 'Tiempo'
                         }
                     }],
                     yAxes: [{
@@ -125,7 +111,7 @@
 
         const lineChart = new Chart(context, config);
 
-        const source = new EventSource("/datos_monitoreo");
+        const source = new EventSource("/data_sensor");
 
         source.onmessage = function (event) {
             const data = JSON.parse(event.data);
