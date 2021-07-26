@@ -51,7 +51,7 @@ def chivos():
         dataframe2 = cur.fetchall()
 
         cur.close()                     # closed cursor
-
+        
         # VARIABLES FOR THE TABLES
         context = {
             'dataframe1': dataframe1,
@@ -78,11 +78,13 @@ def Home():
     cur.execute('SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
     average_wh  = cur.fetchall();
     sensor = dataframe1[-1][1]
+    price_wh = float(average_wh [0][0]) * (0.590)
     context = {
         'datacurrent': dataframe1,
         'max_value':max_value[0][0],
         'average_wh':average_wh[0][0] ,
         'data': sensor,
+        'price_wh':price_wh ,
         }
     return render_template('dashboard.html',**context)
 
