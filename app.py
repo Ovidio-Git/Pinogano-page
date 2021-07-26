@@ -105,6 +105,7 @@ def datos_monitoreo():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
+    return "que jue"
     json_data = json.dumps(
         {'fecha': datos_tiempo_real[0][0], 'numero1': datos_tiempo_real[0][1], 'numero2': datos_tiempo_real[0][2]}
     )
