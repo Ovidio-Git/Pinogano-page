@@ -105,7 +105,7 @@ def Home():
 def data_sensor():
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
-    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
+    cur.execute('SELECT TIME(created_at), value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()
     data = jsonify ({
             'data': {'fecha': data_time[0][0],
