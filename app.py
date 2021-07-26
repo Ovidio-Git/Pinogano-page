@@ -112,7 +112,7 @@ def data_sensor():
       #              'value1': data_time[0][1]}
     #})
     json_data = json.dumps ({
-            ''fecha': data_time[0][0],
+            'fecha': data_time[0][0],
                     'value1': data_time[0][1]
     })
     send =  f"data:{json_data}\n\n"
