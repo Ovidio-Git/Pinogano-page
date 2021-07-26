@@ -99,20 +99,6 @@ def Home():
     return render_template('dashboard.html',**context)
 
 
-@app.route('/datos_monitoreo', methods=['GET'])
-def datos_monitoreo():
-    app.config['MYSQL_DB'] = 'metrics'
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
-    datos_tiempo_real = cur.fetchall()
-    json_data = jsonify ({
-                     'fecha': data_time[0][0],
-                     'value1': data_time[0][1]
-    })
-    return "que jue"
-    enviar = f"data:{json_data}\n\n"
-    return Response(stream_with_context(enviar), mimetype='text/event-stream')
-
 
 
 @app.route('/data_sensor', methods=['GET'])
@@ -121,11 +107,14 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()
-    return jsonify ({
-            'data': {'fecha': data_time[0][0],
+    #return jsonify ({
+    #        'data': {'fecha': data_time[0][0],
+    #                'value1': data_time[0][1]}
+    #})
+    return Response(stream_with_context(jsonify ({
+             'data': {'fecha': data_time[0][0],
                     'value1': data_time[0][1]}
-    })
-
+    }) )  ,mimetype='text/event-stream')
 
 # RECEIVE ESP8266 DATA
 @app.route('/metrics/<sensor>', methods=['POST'])
