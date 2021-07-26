@@ -107,9 +107,26 @@
                     }
                 }],
             }
-
           }
-      });
+        })
+
+        const lineChart = new Chart(context, config);
+        const source = new EventSource("/metrics");
+        source.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        if (config.data.labels.length == 5) {
+          config.data.labels.shift();
+          config.data.datasets[0].data.shift();
+        }
+
+    config.data.labels.push(data.fecha);
+    config.data.datasets[0].data.push(data.tableline);
+    lineChart.update();
+}
+
+        
+        
+        ;
 
   </script>
 
