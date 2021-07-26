@@ -106,8 +106,8 @@ def datos_monitoreo():
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
     json_data = jsonify ({
-            'data': {'fecha': data_time[0][0],
-                    'value1': data_time[0][1]}
+                     'fecha': data_time[0][0],
+                     'value1': data_time[0][1]
     })
     return "que jue"
     enviar = f"data:{json_data}\n\n"
