@@ -115,7 +115,7 @@ def data_sensor():
             'fecha': data_time[0][0],
                     'value1': data_time[0][1]
     })
-    send =  f"data:{json_data}\n\n"
+    data =  f"data:{json_data}\n\n"
    
     return stream_with_context(data),{'Mimetype':'text/event-stream'}
     
