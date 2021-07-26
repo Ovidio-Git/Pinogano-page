@@ -111,10 +111,10 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     datos_tiempo_real = cur.fetchall()
-    return jsonfy {
+    return jsonfy ({
             'data': {'fecha': datos_tiempo_real[0][0],
                     'value1': datos_tiempo_real[0][1]}
-    }
+    })
     return Response(stream_with_context(_datos()), mimetype='text/event-stream')
 
 
