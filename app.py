@@ -79,12 +79,13 @@ def Home():
     average_wh  = cur.fetchall();
     sensor = dataframe1[-1][1]
     price_wh = float(average_wh [0][0]) * (0.590)
+    test = 10
     context = {
         'datacurrent': dataframe1,
         'max_value':max_value[0][0],
         'average_wh':average_wh[0][0] ,
         'data': sensor,
-        'price_wh':price_wh ,
+        'price_wh':test ,
         }
     return render_template('dashboard.html',**context)
 
