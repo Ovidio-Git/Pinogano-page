@@ -70,7 +70,7 @@ def chivos():
         return render_template('tabel.html', **context)
 
     return render_template('chivos.html')
-    # return redirect(url_for('chivos.html'))
+
 
 
 #    ROUTE METRICS PAGE
@@ -107,15 +107,11 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()
-    #data = json.dumps ({
-     #       'data': {'fecha': data_time[0][0],
-      #              'value1': data_time[0][1]}
-    #})
-    json_data = json.dumps ({
-            'fecha': data_time[0][0],
-                    'value1': data_time[0][1]
+    data = jsonify ({
+           'data': {'fecha': data_time[0][0],
+                    'value1': data_time[0][1]}
     })
-    data =  f"data:{json_data}\n\n"
+
    
     return stream_with_context(data),{'Mimetype':'text/event-stream'}
     
