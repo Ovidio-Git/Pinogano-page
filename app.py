@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect,request, redirect, url_for, Response, stream_with_context,  jsonify
+from flask import Flask, render_template, redirect,request, redirect, url_for, jsonify
 from flask_mysqldb import MySQL
 import json
 from toolbox import Chivo
@@ -11,17 +11,6 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '991121'
 app.config['MYSQL_DB'] = 'history_goat'
 mysql = MySQL(app)
-
-
-def _datos(cur):
-    app.config['MYSQL_DB'] = 'metrics'
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
-    datos_tiempo_real = cur.fetchall()
- 
-    json_data = json.dumps(
-        {'fecha': datos_tiempo_real[0][0], 'value1': datos_tiempo_real[0][1]})
-    yield f"data:{json_data}\n\n"
 
 
 
@@ -105,17 +94,16 @@ def Home():
         }
     return render_template('dashboard.html',**context)
 
-@app.route('/data_sensor')
+@app.route('/data_sensor', methods=['GET'])
 def data_sensor():
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
-    datos_tiempo_real = cur.fetchall()
-    return jsonfy ({
-            'data': {'fecha': datos_tiempo_real[0][0],
-                    'value1': datos_tiempo_real[0][1]}
+    data_time = cur.fetchall()
+    return jsonify ({
+            'data': {'fecha': data_time[0][0],
+                    'value1': data_time[0][1]}
     })
-    return Response(stream_with_context(_datos()), mimetype='text/event-stream')
 
 
 # RECEIVE ESP8266 DATA
