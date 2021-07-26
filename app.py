@@ -110,8 +110,7 @@ def data_sensor():
     return Response(jsonify ({
             'data': {'fecha': data_time[0][0],
                     'value1': data_time[0][1]}
-    })
-                   )
+    }), mimetype='text/event-stream')
 
 
 # RECEIVE ESP8266 DATA
