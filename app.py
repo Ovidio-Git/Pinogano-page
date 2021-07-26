@@ -111,7 +111,8 @@ def data_sensor():
             'data': {'fecha': data_time[0][0],
                     'value1': data_time[0][1]}
     })
-    return data
+    
+    return Response(data, mimetype='text/event-stream')
 
 
 # RECEIVE ESP8266 DATA
