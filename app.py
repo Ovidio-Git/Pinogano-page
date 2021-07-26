@@ -111,10 +111,11 @@ def data_sensor():
     #        'data': {'fecha': data_time[0][0],
     #                'value1': data_time[0][1]}
     #})
-    return Response(stream_with_context(jsonify ({
+    aux = jsonify ({
              'data': {'fecha': data_time[0][0],
                     'value1': data_time[0][1]}
-    }) )  ,mimetype='text/event-stream')
+    })
+    return Response(stream_with_context(aux)  ,mimetype='text/event-stream')
 
 # RECEIVE ESP8266 DATA
 @app.route('/metrics/<sensor>', methods=['POST'])
