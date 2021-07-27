@@ -117,7 +117,9 @@
         const source = new EventSource("/data_sensor");
         source.onmessage = function (event) {
             const data = JSON.parse(event.data);
-            
+                        console.log("Data value:", data);
+            console.log("Data.value1:", data.value1);
+            console.log("Data.fecha", data.fecha);
             if (config.data.labels.length == 5) {
                 config.data.labels.shift();
                 config.data.datasets[0].data.shift();
@@ -125,10 +127,7 @@
             config.data.labels.push(data.fecha);
             config.data.datasets[0].data.push(data.value1);
             lineChart.update();
-            console.log("Data value:", data);
-            console.log("Data.value1:", data.value1);
-            console.log("Data.fecha", data.fecha);
-            console.log("Event.fecha", event.data);
+
         }
   
     });
