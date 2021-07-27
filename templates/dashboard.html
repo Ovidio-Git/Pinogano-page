@@ -143,7 +143,7 @@
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
 
-    var data = {
+    var data1 = {
       labels: ['Consumo', 'Sin consumir'],
       datasets: [{
           backgroundColor: ["rgba(48, 207, 149, 1)",
@@ -155,7 +155,7 @@
     var ctx = document.getElementById("donut").getContext("2d");
     var co = new Chart(ctx, {
       type: 'doughnut',
-      data: data,
+      data: data1,
       options: {
           cutoutPercentage:73,
           circumference:Math.PI,
