@@ -14,10 +14,6 @@ mysql = MySQL(app)
 
 
 
-
-
-
-    
 #    ROUTE HOME PAGE
 @app.route('/')
 def index():
