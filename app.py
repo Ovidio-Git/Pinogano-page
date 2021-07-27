@@ -109,8 +109,8 @@ def data_sensor():
     })
 
    
-    return Response(stream_with_context(data), mimetype='text/event-stream')
-    return stream_with_context(data),{'Content-Type: application/json','Mimetype : text/event-stream'}
+    #return Response(stream_with_context(data), mimetype='text/event-stream')
+    return stream_with_context(data),{'Mimetype : text/event-stream'}
     
 
 
