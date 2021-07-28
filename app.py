@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect,request, url_for, jsonify, Response, stream_with_context
+from flask import Flask, render_template, redirect,request, url_for, Response, stream_with_context
 from flask_mysqldb import MySQL
 import json
 from toolbox import Chivo
@@ -107,8 +107,8 @@ def data_sensor():
         cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
         data_time = cur.fetchall()
         json_data = json.dumps({
-                                 'fecha' : data_time[0][0], 
-                                 'value1': data_time[0][1]
+                                 'fecha' : '2012-04-23T18:25:43.511Z', 
+                                 'value1': 4
                                 })
                                 
         yield f"data:{json_data}\n\n"
