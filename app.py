@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect,request, redirect, url_for, jsonify, Response, stream_with_context
+from flask import Flask, render_template, redirect,request, url_for, jsonify, Response, stream_with_context
 from flask_mysqldb import MySQL
 import json
 from toolbox import Chivo
@@ -101,23 +101,20 @@ def Home():
 
 @app.route('/data_sensor', methods=['GET','POST'])
 def data_sensor():
-    def generate_json_data(data_t):
-            json_data = json.dumps(
-                {'fecha': data_t[0][0], 'value1': data_t[0][1]})
-            yield f"data:{json_data}\n\n"
-                      
-    app.config['MYSQL_DB'] = 'metrics'
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
-    data_time = cur.fetchall()
-    # data = jsonify ({
-    #           'data': {'fecha': data_time[0][0],
-    #                    'value1': data_time[0][1]}
-    #    })
-    
-    return Response(generate_json_data(data_time), mimetype='text/event-stream')
-  
-    #return Response(stream_with_context(data), mimetype='text/event-stream')
+    def generate_json():
+        app.config['MYSQL_DB'] = 'metrics'
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
+        data_time = cur.fetchall()
+        json_data = json.dumps({
+                                 'fecha' : data_time[0][0], 
+                                 'value1': data_time[0][1]
+                                })
+                                
+        yield f"data:{json_data}\n\n"
+      
+    return Response(generate_json(), mimetype='text/event-stream')
+
     #return stream_with_context(data),{'Content-Type' : 'text/event-stream', 'Mimetype' : 'text/event-stream'}
     
 
