@@ -3,9 +3,6 @@ from flask_mysqldb import MySQL
 import json
 from toolbox import Chivo
 
-import random
-import time
-from datetime import datetime
 
 
 app = Flask(__name__)
@@ -111,7 +108,7 @@ def data_sensor():
             yield f"data:{json_data}\n\n"
             time.sleep(1)
 
-    return Response(generate_random_data(), mimetype='text/event-stream')
+  
                     
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
@@ -122,6 +119,7 @@ def data_sensor():
                         'value1': data_time[0][1]}
         })
     
+    return Response(data, mimetype='text/event-stream')
     return app.response_class(data, mimetype="text/event-stream")
    
     #return Response(stream_with_context(data), mimetype='text/event-stream')
