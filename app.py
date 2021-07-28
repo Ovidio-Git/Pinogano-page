@@ -107,7 +107,7 @@ def data_sensor():
         cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
         data_time = cur.fetchall()
         json_data = json.dumps({
-                                 'fecha' : '2012-04-23T18:25:43.511Z', 
+                                 'fecha' : data_time[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
                                  'value1': 4
                                 })
                                 
