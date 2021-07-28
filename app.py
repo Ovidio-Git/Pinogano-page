@@ -101,17 +101,15 @@ def Home():
 
 @app.route('/data_sensor', methods=['GET','POST'])
 def data_sensor():
-    def generate_json():
-        app.config['MYSQL_DB'] = 'metrics'
-        cur = mysql.connection.cursor()
-        cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
-        data_time = cur.fetchall()
+    
+    def generate_json(data):
         json_data = json.dumps({
-                                 'fecha' : data_time[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
-                                 'value1': 4
+                                 'fecha' : data[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
+                                 'value1': data[0][1] 
                                 })
                                 
         yield f"data:{json_data}\n\n"
+        
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
@@ -123,7 +121,7 @@ def data_sensor():
     }})
     #return Response(generate_json(), mimetype='text/event-stream')
 
-    return stream_with_context(data),{'Content-Type' : 'text/event-stream', 'Mimetype' : 'text/event-stream'}
+    return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
 
