@@ -106,7 +106,7 @@ def data_sensor():
             yield f"data:{json_data}\n\n"
             time.sleep(1)
 
-    return Response(generate_random_data(), mimetype='text/event-stre
+    return Response(generate_random_data(), mimetype='text/event-stream')
                     
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
