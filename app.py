@@ -99,6 +99,15 @@ def Home():
 
 @app.route('/data_sensor', methods=['GET','POST'])
 def data_sensor():
+    def generate_random_data():
+        while True:
+            json_data = json.dumps(
+                {'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'value': random.random() * 100})
+            yield f"data:{json_data}\n\n"
+            time.sleep(1)
+
+    return Response(generate_random_data(), mimetype='text/event-stre
+                    
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
