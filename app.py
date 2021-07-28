@@ -113,9 +113,9 @@ def data_sensor():
                                 
         yield f"data:{json_data}\n\n"
       
-    return Response(generate_json(), mimetype='text/event-stream')
+    #return Response(generate_json(), mimetype='text/event-stream')
 
-    #return stream_with_context(data),{'Content-Type' : 'text/event-stream', 'Mimetype' : 'text/event-stream'}
+    return stream_with_context(generate_json()),{'Content-Type' : 'text/event-stream', 'Mimetype' : 'text/event-stream'}
     
 
 
