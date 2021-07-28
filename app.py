@@ -103,12 +103,13 @@ def Home():
 def data_sensor():
     
     def generate_json(data):
-        json_data = json.dumps({
+        while True:
+            json_data = json.dumps({
                                  'fecha' : data[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
                                  'value1': data[0][1] 
                                 })
                                 
-        yield f"data:{json_data}\n\n"
+            yield f"data:{json_data}\n\n"
         
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
@@ -119,7 +120,7 @@ def data_sensor():
                                  'value1': data_time[0][1]  
     
     }})
-    #return Response(generate_json(), mimetype='text/event-stream')
+    #return Response(data, mimetype='text/event-stream')
 
     return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
