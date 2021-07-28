@@ -3,6 +3,11 @@ from flask_mysqldb import MySQL
 import json
 from toolbox import Chivo
 
+import random
+import time
+from datetime import datetime
+
+
 app = Flask(__name__)
 
 #    DATABASE CONFIGURATION
