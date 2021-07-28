@@ -108,10 +108,10 @@ def data_sensor():
                         'value1': data_time[0][1]}
         })
     
-    #return app.response_class(eventStream(), mimetype="text/event-stream")
+    return app.response_class(data, mimetype="text/event-stream")
    
     #return Response(stream_with_context(data), mimetype='text/event-stream')
-    return stream_with_context(data),{'Content-Type' : 'text/event-stream', 'Mimetype' : 'text/event-stream'}
+    #return stream_with_context(data),{'Content-Type' : 'text/event-stream', 'Mimetype' : 'text/event-stream'}
     
 
 
