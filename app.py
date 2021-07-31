@@ -115,13 +115,13 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()        
-    data = jsonify({'data':{
-                                 'fecha' : data_time[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
-                                 'value1': data_time[0][1]  
-    
-    }})
+    #data = jsonify({'data':{
+    #                             'fecha' : data_time[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
+    #                             'value1': data_time[0][1]  
+    #
+    #}})
     #return Response(data, mimetype='text/event-stream')
-
+    return data_time
     return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
