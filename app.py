@@ -102,10 +102,10 @@ def Home():
 @app.route('/data_sensor', methods=['GET','POST'])
 def data_sensor():
     
-    def generate_json(data):
+    def generate_json(data1, data2):
         json_data = json.dumps({
-                    'fecha' : data[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
-                     'value1': data[0][1] 
+                     'fecha' : data1, 
+                     'value1': data2
                       })                            
         yield f"data:{json_data}\n\n"
         
@@ -121,8 +121,8 @@ def data_sensor():
     #
     #}})
     #return Response(data, mimetype='text/event-stream')
-    retornar = " fecha: " + str(fecha) + " value: " + str(value) + " fecatype-valuetype: " + str(type(fecha)) + "-" + str(type(value))
-    return retornar
+  
+    return generate_json(fecha, value)
     return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
