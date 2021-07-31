@@ -121,7 +121,7 @@ def data_sensor():
     #
     #}})
     #return Response(data, mimetype='text/event-stream')
-    return data_time
+    return str(data_time)
     return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
