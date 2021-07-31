@@ -123,7 +123,8 @@ def data_sensor():
     #
     #}})
     #return Response(data, mimetype='text/event-stream')
-    return "fecha:", str(fecha), "value:", str(value), "fecatype-valuetype", str(type(fecha)),"-", str(type(value))
+    retornar = "fecha:" + str(fecha) + "value:" + str(value) + "fecatype-valuetype" + str(type(fecha)) + "-" + str(type(value))
+    return retornar
     return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
