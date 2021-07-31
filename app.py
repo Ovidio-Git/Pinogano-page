@@ -103,20 +103,18 @@ def Home():
 def data_sensor():
     
     def generate_json(data):
-        while True:
-            json_data = json.dumps({
-                                 'fecha' : data[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
-                                 'value1': data[0][1] 
-                                })
-                                
-            yield f"data:{json_data}\n\n"
+    json_data = json.dumps({
+                    'fecha' : data[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
+                     'value1': data[0][1] 
+                      })                            
+    yield f"data:{json_data}\n\n"
         
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()        
-    fecha = data[0][0].strftime('%Y-%m-%d %H:%M:%S')
-    value = data[0][1] 
+    fecha = data_time[0][0].strftime('%Y-%m-%d %H:%M:%S')
+    value = int(data_time[0][1]) 
     #data = jsonify({'data':{
     #                             'fecha' : data_time[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
     #                             'value1': data_time[0][1]  
