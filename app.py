@@ -102,12 +102,9 @@ def Home():
 @app.route('/data_sensor', methods=['GET','POST'])
 def data_sensor():
     
-    def generate_json(data1, data2):
-        json_data = json.dumps({
-                     'fecha' : data1, 
-                     'value1': data2
-                      })                            
-        yield f"data:{json_data}\n\n"
+    
+                         
+
         
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
@@ -121,8 +118,11 @@ def data_sensor():
     #
     #}})
     #return Response(data, mimetype='text/event-stream')
-  
-    return generate_json(fecha, value)
+    json_data = json.dumps({'data':{
+                     'fecha' : fecha, 
+                     'value1': value}
+                      })   
+    return json_data
     return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
