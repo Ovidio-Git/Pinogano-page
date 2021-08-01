@@ -83,11 +83,11 @@ def Home():
     else:
         price_wh = 0
     context = {
-        'datacurrent': dataframe1
+        'datacurrent': dataframe1,
         'max_value':max_value[0][0],
         'average_wh':average_wh[0][0] ,
         'data': sensor,
-        'price_wh':price_wh ,
+        'price_wh':price_wh 
         }
     return render_template('dashboard.html', **context)
 
