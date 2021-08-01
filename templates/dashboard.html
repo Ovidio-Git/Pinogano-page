@@ -90,7 +90,7 @@
 
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
  
-    var interval = setInterval(update_values,  1000);
+    update_values();
     var interval = setInterval(update_values,  300000);
     var fecha1 ;
     var value2 ;
@@ -180,15 +180,14 @@
       
     function update_valuesD(){
             co.data.datasets[0].data.pop();
-        co.data.datasets[0].data.pop();
+            co.data.datasets[0].data.pop();
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         value2 = data.data.value1;
                         });
             co.data.datasets[0].data.push(value2);
             co.data.datasets[0].data.push(3500-value2);
-            co.update();
-            
+            co.update();    
         };
       
       
@@ -202,7 +201,7 @@
           data : [],
       }]
     };
-
+      
     var ctx = document.getElementById("donut").getContext("2d");
     var co = new Chart(ctx, {
       type: 'doughnut',
