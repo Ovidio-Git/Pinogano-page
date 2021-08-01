@@ -80,11 +80,11 @@
                         
                         console.log(data);
                         console.log(data.data.fecha);
-                        console.log(data.value1);
+                        console.log(data.data.value1);
                         });
 
-            config.data.labels.push(data.fecha);
-            config.data.datasets[0].data.push(data.value1);
+            config.data.labels.push(data.data.fecha);
+            config.data.datasets[0].data.push(data.data.value1);
             config.update();
         
         };
