@@ -86,11 +86,12 @@
 }
 
 /* font cards consumo and valor pico */
+    
 .dfont{
     font-size: clamp(2.6rem, 4vw, 58px);  /* font responsive*/
     position: absolute;
     z-index: 1;
-    color:#1cbfe4;
+    color:#396AB1;
     top: 42%;
     left: 38%;
     font-family: Arial;
@@ -106,7 +107,7 @@
 .money{
     font-size: clamp(2.6rem, 4vw, 58px);
     position: absolute;
-    color:#fab75a;
+    color:#E1974C;
     z-index: 1;
     top: 42%;
     left: 25%;
