@@ -77,8 +77,10 @@
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
-                        $('#result').text(data.result);
+                        
                         console.log(data);
+                        console.log(data.fecha);
+                        console.log(data.value1);
                         });
 
             config.data.labels.push(data.fecha);
