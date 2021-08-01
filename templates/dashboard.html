@@ -71,11 +71,14 @@
 
       
  
+    
+    var interval = setInterval(update_values, 1000);
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/data_sensor');
+            console.log(data)
             config.data.labels.push(data.fecha);
             config.data.datasets[0].data.push(data.value1);
-            lineChart.update();
+            config.update();
         
         };
       
