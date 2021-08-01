@@ -10,8 +10,8 @@
       <div class="statistics col-md-4">
         <div class="card text-white bg-ligth mb-3">
           <div class="card-body shadow">
-            <h5 class="card-title text-secondary">Valor pico diario</h5>
-            <span  id = "maxvalue" class="dfont">?</span>
+            <h5 class="card-title text-secondary">Valor pico diario (W)</h5>
+            <span  id = "maxvalue" class="dfont">? W</span>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
@@ -23,29 +23,38 @@
         <div class="card text-white  mb-3">
           <div class="card-body shadow" >
             <h5 class="card-title text-secondary">Consumo (Wh)</h5>
-            <div class="position-absolute text-center dfont">{{ average_wh }} Wh </div>
+            <span id = "average" class="position-absolute text-center dfont">? Wh</span>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
       </div>
+        <script>
+            document.getElementById("average").innerHTML;
+        </script>
       <div class="statistics col-md-4">
         <div class="card text-white mb-3">
           <div class="card-body shadow" >
             <h5 class="card-title text-secondary">Valor consumo energetico</h5>
-            <div class=" position-absolute text-center money">$ {{ price_wh }}  </div>
+            <span id = "price" class=" position-absolute text-center money">$ ?</span>
             <canvas id="tortaPorcentaje" width="40" height="70"></canvas>
           </div>
         </div>
       </div>
+        <script>
+            document.getElementById("price").innerHTML;
+        </script>
       <div class="col-md-6 ">
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title text-secondary">Consumo (W) </h5>
-            <div class="position-absolute hauge posi">{{ data }} </div>
+            <span id = "consumo" class="position-absolute hauge posi">? </div>
             <canvas id="donut" width="500" height="400"></canvas>
           </div>
         </div>
       </div>
+        <script>
+            document.getElementById("consumo").innerHTML;
+        </script>
         <div class="col-md-6" onload ="update_values();">
         <div class="card mb-3">
           <div class="card-body shadow">
@@ -89,6 +98,9 @@
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         $('#maxvalue').text(data.data.max_value);
+                        $('#average').text(data.data.average_wh);
+                        $('#price').text(data.data.price_wh);
+                        $('#consumo').text(data.data.value1);
                         fecha1 = data.data.fecha;
                         value2 = data.data.value1;
                         });
