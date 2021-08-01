@@ -73,10 +73,10 @@
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
 
-      
+      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
  
     
-    var interval = setInterval(update_values, 2000);
+    var interval = setInterval(update_values, 4000);
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
