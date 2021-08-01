@@ -115,8 +115,8 @@ def data_sensor():
     data  = jsonify({'data':{
                                 'fecha' : fecha, 
                                 'value1': value,
-                                'max_value':int(max_value[0][0]),
-                                'average_wh':float(average_wh[0][0]) ,
+                                'max_value':max_value[0][0],
+                                'average_wh':average_wh[0][0],
                                 'data': sensor,
                                 'price_wh':price_wh 
     }})
@@ -126,7 +126,7 @@ def data_sensor():
       #               'value1': value}
        #               })   
     return data
-    #return {'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
+    return {'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
 
