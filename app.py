@@ -1,12 +1,9 @@
 from flask import Flask, render_template, redirect,request, url_for, Response, stream_with_context, jsonify
 from flask_mysqldb import MySQL
-import json
 from toolbox import Chivo
-
-
+import json
 
 app = Flask(__name__)
-
 #    DATABASE CONFIGURATION
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -15,11 +12,11 @@ app.config['MYSQL_DB'] = 'history_goat'
 mysql = MySQL(app)
 
 
-
 #    ROUTE HOME PAGE
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 #    ROUTE CHIVOS PAGE
 @app.route('/chivos', methods=['GET','POST'])
@@ -54,7 +51,6 @@ def chivos():
             mysql.connection.commit()   # execute the query
         cur.execute('SELECT * FROM goats ORDER BY id DESC LIMIT %s',(lengt2,)) # the point in (lengt,) is important!
         dataframe2 = cur.fetchall()
-
         cur.close()                     # closed cursor
         
         # VARIABLES FOR THE TABLES
@@ -66,7 +62,6 @@ def chivos():
             'feme':feme
         }
         return render_template('tabel.html', **context)
-
     return render_template('chivos.html')
 
 
@@ -100,30 +95,26 @@ def Home():
 
 
 @app.route('/data_sensor', methods=['GET','POST'])
-def data_sensor():
-    
-    
-                         
-
-        
+def data_sensor():  
     app.config['MYSQL_DB'] = 'metrics'
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()        
+    cur.close()
     fecha = data_time[0][0]
     value = int(data_time[0][1]) 
-    #data = jsonify({'data':{
-    #                             'fecha' : data_time[0][0].strftime('%Y-%m-%d %H:%M:%S'), 
-    #                             'value1': data_time[0][1]  
-    #
-    #}})
+    data = jsonify({'data':{
+                                 'fecha' : fecha, 
+                                 'value1': value
+    
+    }})
     #return Response(data, mimetype='text/event-stream')
     json_data = json.dumps({'data':{
                      'fecha' : fecha, 
                      'value1': value}
                       })   
-    return json_data
-    return generate_json(data_time),{'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
+    return data
+    return {'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
 
