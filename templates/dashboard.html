@@ -43,7 +43,7 @@
         <script>
             document.getElementById("price").innerHTML;
         </script>
-      <div class="col-md-6 ">
+      <div class="col-md-6" onload ="update_valuesD();">
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title text-secondary">Consumo (W) </h5>
@@ -173,12 +173,26 @@
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
 
+  
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};       
+    var intervalD = setInterval(update_valuesD, 1000);
+    var value2 ;
+    function update_valuesD(){
+            $.getJSON($SCRIPT_ROOT + '/_datasensor',
+                     function(data){
+                        value2 = data.data.value1;
+                        });
+            co.data.datasets[0].data.push(value2);
+            co.update();
+        };
+      
+      
     var data1 = {
       labels: ['Consumo', 'Sin consumir'],
       datasets: [{
           backgroundColor: ["rgba(132, 186, 91, 1)",
                             "rgba(114,147,203,0.2)"],
-          data : [ {{ data }} , {{ 3500 - data}} ],
+          data : [ value2 , ( 3500 - value2 ) ],
       }]
     };
 
