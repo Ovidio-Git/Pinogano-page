@@ -179,7 +179,7 @@
     var value2 ;
       
     function update_valuesD(){
-            co.data.labels.pop();
+            co.data.datasets[0].data.pop();
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         value2 = data.data.value1;
