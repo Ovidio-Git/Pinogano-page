@@ -74,17 +74,21 @@
  
     
     var interval = setInterval(update_values, 4000);
+    var fecha1 ;
+    var value2 ;
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         
                         console.log(data);
-                        console.log(data.data.fecha);
-                        console.log(data.data.value1);
+                        fecha1 = data.data.fecha;
+                        value2 = data.data.fecha
+                        console.log(fecha1);
+                        console.log(value2);
                         });
 
             config.data.labels.push(data.data.fecha);
-            config.data.datasets[0].data.push(data.data.value1);
+            config.data.datasets[0].data.push(value2);
             config.update();
         
         };
