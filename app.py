@@ -73,23 +73,23 @@ def Home():
     cur = mysql.connection.cursor() # cur permited make queries
     cur.execute('SELECT * FROM currents WHERE DATE(created_at) = CURDATE()') # the point in (lengt,) is important!
     dataframe1 = cur.fetchall()
-    cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
-    max_value = cur.fetchall()
-    cur.execute('SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
-    average_wh  = cur.fetchall();
-    sensor = dataframe1[-1][1]
-    if average_wh [0][0] != None:
-        price_wh = round( float(average_wh [0][0]) * (0.590), 2)
-    else:
-        price_wh = 0
+    #cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
+    #max_value = cur.fetchall()
+    #cur.execute('SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
+    #average_wh  = cur.fetchall();
+    #sensor = dataframe1[-1][1]
+    #if average_wh [0][0] != None:
+    #    price_wh = round( float(average_wh [0][0]) * (0.590), 2)
+    #else:
+    #    price_wh = 0
     context = {
-        'datacurrent': dataframe1,
-        'max_value':max_value[0][0],
-        'average_wh':average_wh[0][0] ,
-        'data': sensor,
-        'price_wh':price_wh ,
+        'datacurrent': dataframe1
+    #    'max_value':max_value[0][0],
+    #    'average_wh':average_wh[0][0] ,
+    #    'data': sensor,
+    #    'price_wh':price_wh ,
         }
-    return render_template('dashboard.html',**context)
+    return render_template('dashboard.html', **context)
 
 
 
@@ -100,13 +100,25 @@ def data_sensor():
     cur = mysql.connection.cursor()
     cur.execute('SELECT created_at, value FROM currents WHERE id = (SELECT MAX(id) FROM currents)')
     data_time = cur.fetchall()        
+    cur.execute('SELECT MAX(value) FROM currents WHERE DATE(created_at) = CURDATE()') 
+    max_value = cur.fetchall()
+    cur.execute('SELECT CAST(AVG(value) AS DECIMAL(10,1)) FROM currents WHERE HOUR(created_at) = HOUR(NOW()) AND DATE(created_at) = CURDATE()')
+    average_wh  = cur.fetchall();
+    sensor = dataframe1[-1][1]
+    if average_wh [0][0] != None:
+        price_wh = round( float(average_wh [0][0]) * (0.590), 2)
+    else:
+        price_wh = 0
     cur.close()
     fecha = data_time[0][0]
     value = int(data_time[0][1]) 
-    data = jsonify({'data':{
-                                 'fecha' : fecha, 
-                                 'value1': value
-    
+    data  = jsonify({'data':{
+                                'fecha' : fecha, 
+                                'value1': value,
+                                'max_value':int(max_value[0][0]),
+                                'average_wh':float(average_wh[0][0]) ,
+                                'data': sensor,
+                                'price_wh':price_wh 
     }})
     #return Response(data, mimetype='text/event-stream')
     #json_data = json.dumps({'data':{
@@ -114,7 +126,7 @@ def data_sensor():
       #               'value1': value}
        #               })   
     return data
-    return {'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
+    #return {'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
 
 
