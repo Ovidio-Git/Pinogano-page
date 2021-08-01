@@ -59,12 +59,7 @@
 </div>
 
 
-<!--suppress JSUnresolvedLibraryURL -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-
-<!--suppress JSUnresolvedLibraryURL -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!--suppress JSUnresolvedLibraryURL -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
@@ -73,7 +68,7 @@
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
 
-      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
  
     
     var interval = setInterval(update_values, 4000);
