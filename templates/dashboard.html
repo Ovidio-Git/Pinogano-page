@@ -180,12 +180,13 @@
       
     function update_valuesD(){
             co.data.datasets[0].data.pop();
+        co.data.datasets[0].data.pop();
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         value2 = data.data.value1;
                         });
-            co.data.datasets[0].data.push(3500-value2);
             co.data.datasets[0].data.push(value2);
+            co.data.datasets[0].data.push(3500-value2);
             co.update();
             
         };
