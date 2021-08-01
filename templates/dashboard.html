@@ -72,10 +72,13 @@
       
  
     
-    var interval = setInterval(update_values, 1000);
+    var interval = setInterval(update_values, 2000);
     function update_values(){
-            $.getJSON($SCRIPT_ROOT + '/data_sensor');
-            console.log(data)
+            $.getJSON($SCRIPT_ROOT + '/data_sensor',
+                     function(data){
+                        console.log(data);
+                        });
+            console.log(data);
             config.data.labels.push(data.fecha);
             config.data.datasets[0].data.push(data.value1);
             config.update();
