@@ -82,12 +82,12 @@
                         
                         console.log(data);
                         fecha1 = data.data.fecha;
-                        value2 = data.data.fecha
+                        value2 = data.data.value1;
                         console.log(fecha1);
                         console.log(value2);
                         });
 
-            config.data.labels.push(data.data.fecha);
+            config.data.labels.push(fecha1);
             config.data.datasets[0].data.push(value2);
             config.update();
         
