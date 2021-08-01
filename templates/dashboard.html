@@ -46,7 +46,7 @@
         <div class="col-md-6" onload ="update_values();">
         <div class="card mb-3">
           <div class="card-body shadow">
-            <h5 class="card-title text-secondary">Histórico Del Dia</h5>
+            <h5 class="card-title text-secondary">Histórico Consumo (W) </h5>
             <canvas id="tableline" width="500" height="400"></canvas>
           </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="col">
         <div class="card mb-3">
           <div class="card-body shadow">
-            <h5 class="card-title text-secondary">Histórico</h5>
+            <h5 class="card-title text-secondary">Histórico Del dia (W)</h5>
             <canvas id="tablelineH" width="900" height="400"></canvas>
           </div>
         </div>
@@ -89,7 +89,7 @@
                         value2 = data.data.value1;
                         });
             
-            if (config.data.labels.length == 8) {
+            if (config.data.labels.length == 7) {
                 config.data.labels.shift();
                 config.data.datasets[0].data.shift();
             }
