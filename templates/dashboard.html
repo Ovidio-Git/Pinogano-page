@@ -69,18 +69,14 @@
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
  
     
-    var interval = setInterval(update_values, 10000);
+    var interval = setInterval(update_values, 1000);
     var fecha1 ;
     var value2 ;
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
-                        
-                        console.log(data);
                         fecha1 = data.data.fecha;
                         value2 = data.data.value1;
-                        console.log(fecha1);
-                        console.log(value2);
                         });
 
             config.data.labels.push(fecha1);
