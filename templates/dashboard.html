@@ -175,14 +175,14 @@
 
   
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};       
-    var intervalD = setInterval(update_valuesD, 2000);
+    var intervalD = setInterval(update_valuesD, 5000);
     var value2 ;
     function update_valuesD(){
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         value2 = data.data.value1;
                         });
-            co.data.datasets[0].data.push(value2);
+            co.data.datasets[0].data.push([value2,(3500-value2)]);
             co.update();
             
         };
@@ -193,7 +193,7 @@
       datasets: [{
           backgroundColor: ["rgba(132, 186, 91, 1)",
                             "rgba(114,147,203,0.2)"],
-          data : [value2, (3500-value2)],
+          data : [],
       }]
     };
 
