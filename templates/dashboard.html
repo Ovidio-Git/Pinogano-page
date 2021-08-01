@@ -177,12 +177,14 @@
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};       
     var intervalD = setInterval(update_valuesD, 1000);
     var value2 ;
+      
     function update_valuesD(){
+            co.data.labels.pop();
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         value2 = data.data.value1;
                         });
-            co.data.datasets[0].data(value2);
+            co.data.datasets[0].data.push(value2);
             co.update();
             
         };
