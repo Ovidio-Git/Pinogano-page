@@ -185,6 +185,7 @@
                         value2 = data.data.value1;
                         });
             co.data.datasets[0].data.push(value2);
+            co.data.datasets[0].data.push(value2-3500);
             co.update();
             
         };
@@ -196,7 +197,7 @@
           backgroundColor: ["rgba(114,147,203,0.2)",
                             "rgba(132, 186, 91, 1)"
                             ],
-          data : [,3500],
+          data : [],
       }]
     };
 
