@@ -78,7 +78,7 @@
     
     var interval = setInterval(update_values, 2000);
     function update_values(){
-            $.getJSON($SCRIPT_ROOT + '/data_sensor',
+            $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         $('#result').text(data.result);
                         console.log(data);
