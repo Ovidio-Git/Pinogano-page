@@ -43,7 +43,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6" onload ="update_values();">
+      <span id="result">?</span>
+        <script>
+         document.getElementById("result").innerHTML;
+        </script>
+        <div class="col-md-6" onload ="update_values();">
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title text-secondary">Histórico Del Dia</h5>
@@ -65,7 +69,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
 <!-- LINE GRAPH-->
-<script>
+<script type="text/javascript">
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
 
@@ -76,16 +80,17 @@
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/data_sensor',
                      function(data){
+                        $('#result').text(data.result);
                         console.log(data);
                         });
-            console.log(data);
+
             config.data.labels.push(data.fecha);
             config.data.datasets[0].data.push(data.value1);
             config.update();
         
         };
       
-    var context = document.getElementById('tableline').getContext('2d');
+    var context = document.getElementById("tableline").getContext('2d');
         var config = new Chart(context,{
             type: 'line',
             data: {
