@@ -109,10 +109,10 @@ def data_sensor():
     
     }})
     #return Response(data, mimetype='text/event-stream')
-    json_data = json.dumps({'data':{
-                     'fecha' : fecha, 
-                     'value1': value}
-                      })   
+    #json_data = json.dumps({'data':{
+     #                'fecha' : fecha, 
+      #               'value1': value}
+       #               })   
     return data
     return {'Content-Type' : 'text/event-stream', 'mimetype' : 'text/event-stream'}
     
