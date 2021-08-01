@@ -64,14 +64,23 @@
 <!--suppress JSUnresolvedLibraryURL -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
-  <!-- LINE GRAPH-->
-  <script>
+<!-- LINE GRAPH-->
+<script>
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.legend.display = false;
 
-
-    $(document).ready(function () {
-        const config = {
+      
+ 
+    function update_values(){
+            $.getJSON($SCRIPT_ROOT + '/data_sensor');
+            config.data.labels.push(data.fecha);
+            config.data.datasets[0].data.push(data.value1);
+            lineChart.update();
+        
+        };
+      
+    var context = document.getElementById('tableline').getContext('2d');
+        var config = new Chart(context,{
             type: 'line',
             data: {
                 labels: [],
@@ -113,28 +122,9 @@
                     }]
                 }
             }
-        };
+        );
 
-        const context = document.getElementById('tableline').getContext('2d');
-        const lineChart = new Chart(context, config);
-        
-        
-        const source = new EventSource("/data_sensor");
-        source.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            if (config.data.labels.length == 5) {
-                config.data.labels.shift();
-                config.data.datasets[0].data.shift();
-            }
-            config.data.labels.push(data.fecha);
-            config.data.datasets[0].data.push(data.value1);
-            lineChart.update();
-  
-        }
- 
-    });
-
-  </script>
+</script>
 
 
   <!-- DOUGHNUT GRAPH  -->
