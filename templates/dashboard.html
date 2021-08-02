@@ -90,8 +90,8 @@
 
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
  
-
-    var interval = setInterval(update_values, 5000);
+    co.data.datasets[0].data.push(1);
+    var interval = setInterval(update_values, 3000);
     var fecha1 ;
     var value2 ;
     function update_values(){
