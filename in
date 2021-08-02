@@ -1,0 +1,12 @@
+[2021-07-31 23:48:22 +0000] [31799] [INFO] Starting gunicorn 20.1.0
+[2021-07-31 23:48:22 +0000] [31799] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2021-07-31 23:48:22 +0000] [31799] [ERROR] Retrying in 1 second.
+[2021-07-31 23:48:23 +0000] [31799] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2021-07-31 23:48:23 +0000] [31799] [ERROR] Retrying in 1 second.
+[2021-07-31 23:48:24 +0000] [31799] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2021-07-31 23:48:24 +0000] [31799] [ERROR] Retrying in 1 second.
+[2021-07-31 23:48:25 +0000] [31799] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2021-07-31 23:48:25 +0000] [31799] [ERROR] Retrying in 1 second.
+[2021-07-31 23:48:26 +0000] [31799] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2021-07-31 23:48:26 +0000] [31799] [ERROR] Retrying in 1 second.
+[2021-07-31 23:48:27 +0000] [31799] [ERROR] Can't connect to ('127.0.0.1', 8000)
