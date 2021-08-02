@@ -175,7 +175,7 @@
 
   
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};       
-    var intervalD = setInterval(update_valuesD,  1000);
+    
     var value2 ;
       
     function update_valuesD(){
@@ -187,7 +187,8 @@
                         });
             co.data.datasets[0].data.push(value2);
             co.data.datasets[0].data.push(3500-value2);
-            co.update();    
+            co.update();
+            var intervalD = setInterval(update_valuesD, 2000);
         };
       
       
