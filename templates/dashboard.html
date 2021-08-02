@@ -91,7 +91,7 @@
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};    
  
 
-    var interval = setInterval(update_values,  300000);
+    var interval = setInterval(update_values, 5000);
     var fecha1 ;
     var value2 ;
     function update_values(){
@@ -167,6 +167,29 @@
                 }
             }
         });
+    
+    var data1 = {
+      labels: ['Consumo', 'Sin consumir'],
+      datasets: [{
+          backgroundColor:  [
+                            "rgba(132, 186, 91, 1)",
+                            "rgba(114,147,203,0.2)"
+                            ],
+          data : [],
+      }]
+    };
+      
+    var ctx = document.getElementById("donut").getContext("2d");
+    var co = new Chart(ctx, {
+      type: 'doughnut',
+      data: data1,
+      options: {
+          cutoutPercentage:73,
+          circumference:Math.PI,
+          rotation:Math.PI,
+          responsive: true,
+      }
+    });
 
 </script>
 
@@ -199,28 +222,7 @@
         };
       
       
-    var data1 = {
-      labels: ['Consumo', 'Sin consumir'],
-      datasets: [{
-          backgroundColor:  [
-                            "rgba(132, 186, 91, 1)",
-                            "rgba(114,147,203,0.2)"
-                            ],
-          data : [],
-      }]
-    };
-      
-    var ctx = document.getElementById("donut").getContext("2d");
-    var co = new Chart(ctx, {
-      type: 'doughnut',
-      data: data1,
-      options: {
-          cutoutPercentage:73,
-          circumference:Math.PI,
-          rotation:Math.PI,
-          responsive: true,
-      }
-    });
+
   </script>
 
 
