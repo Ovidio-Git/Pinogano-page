@@ -95,8 +95,10 @@
     var fecha1 ;
     var value2 ;
     function update_values(){
-            $.getJSON($SCRIPT_ROOT + '/_datasensor',
-                     function(data){
+            co.data.datasets[0].data.pop();
+            co.data.datasets[0].data.pop();   
+            $.getJSON($SCRIPT_ROOT + '/_datasensor',     
+                      function(data){
 
                         fecha1 = data.data.fecha;
                         value2 = data.data.value1;
@@ -110,6 +112,10 @@
             config.data.labels.push(fecha1);
             config.data.datasets[0].data.push(value2);
             config.update();
+              
+            co.data.datasets[0].data.push(value2);
+            co.data.datasets[0].data.push(3500-value2);
+            co.update();
         
         
         };
@@ -176,8 +182,8 @@
     var value2 ;
       
     function update_valuesD(){
-            co.data.datasets[0].data.pop();
-            co.data.datasets[0].data.pop();
+            //co.data.datasets[0].data.pop();
+            //co.data.datasets[0].data.pop();
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
                         $('#maxvalue').text(data.data.max_value);
@@ -186,9 +192,9 @@
                         $('#consumo').text(data.data.value1);
                         value2 = data.data.value1;
                         });
-            co.data.datasets[0].data.push(value2);
-            co.data.datasets[0].data.push(3500-value2);
-            co.update();
+            //co.data.datasets[0].data.push(value);
+            //co.data.datasets[0].data.push(3500-value);
+            //co.update();
             
         };
       
