@@ -97,10 +97,7 @@
     function update_values(){
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
-                        $('#maxvalue').text(data.data.max_value);
-                        $('#average').text(data.data.average_wh);
-                        $('#price').text(data.data.price_wh);
-                        $('#consumo').text(data.data.value1);
+
                         fecha1 = data.data.fecha;
                         value2 = data.data.value1;
                         });
@@ -175,7 +172,7 @@
 
   
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};       
-    
+    var intervalD = setInterval(update_valuesD, 1000);
     var value2 ;
       
     function update_valuesD(){
@@ -183,12 +180,16 @@
             co.data.datasets[0].data.pop();
             $.getJSON($SCRIPT_ROOT + '/_datasensor',
                      function(data){
+                        $('#maxvalue').text(data.data.max_value);
+                        $('#average').text(data.data.average_wh);
+                        $('#price').text(data.data.price_wh);
+                        $('#consumo').text(data.data.value1);
                         value2 = data.data.value1;
                         });
             co.data.datasets[0].data.push(value2);
             co.data.datasets[0].data.push(3500-value2);
             co.update();
-            var intervalD = setInterval(update_valuesD, 2000);
+            
         };
       
       
