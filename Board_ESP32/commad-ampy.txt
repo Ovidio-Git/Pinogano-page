@@ -1,0 +1,28 @@
+Usage: ampy [OPTIONS] COMMAND [ARGS]...
+
+  ampy - Adafruit MicroPython Tool
+
+  Ampy is a tool to control MicroPython boards over a serial connection.
+  Using ampy you can manipulate files on the board's internal filesystem and
+  even run scripts.
+
+Options:
+  -p, --port PORT  Name of serial port for connected board.  [required]
+  -b, --baud BAUD  Baud rate for the serial connection. (default 115200)
+  -d, --delay DELAY Delay in seconds before entering RAW MODE (default 0)
+  --help           Show this message and exit.
+
+Commands:
+  get  Retrieve a file from the board.
+  ls   List contents of a directory on the board.
+  put  Put a file on the board.
+  rm   Remove a file from the board.
+  run  Run a script and print its output.
+
+
+
+	--> formations command <--
+
+ampy -p /dev/ttyUSB0 [comand] -> programming board
+
+screen /dev/ttyUSB0 115200 -> inside board 
