@@ -5,20 +5,20 @@ from time import time, sleep             # Importamos la libreria time para real
 
 
 def potencia():
-  sumatoria, n    = 0, 0				                      # Inicializamos las variables en 0
-	irms, corriente = 0, 0	             		            # Inicializamos las variables en 0
+	sumatoria, n    = 0, 0				    # Inicializamos las variables en 0
+	irms, corriente = 0, 0	             		    # Inicializamos las variables en 0
 	adc    = machine.ADC(0)                             # Leemos el conversor analogo digital 
-	tiempo = time()					                            # Guardamos el tiempo que lleva el programa ejecutandose
+	tiempo = time()					    # Guardamos el tiempo que lleva el programa ejecutandose
 	while (time() - tiempo) < 0.5:                      # Duración 0.5 segundos(Aprox. 30 ciclos de 60Hz)
-		voltaje   = adc.read() * (1/1023.0)               # voltaje del sensor
-		corriente = voltaje*30.0		                      # Corriente del sensor = Voltaje del sensor * (30A/1V)
-		sumatoria = sumatoria+(corriente*corriente)       # Sumatoria de Cuadrados para calcualr corriente irms
-		n = n+1										                        # Llevamos conteo del numero de ciclos realizados para luego calcular la corriente irms
-		sleep(0.1)									                      # Ejecutamos un diley de 100 ms
-	sumatoria = sumatoria * 2	                          # Para compensar los cuadrados de los semiciclos negativos multiplicamos la corriente por 2.
-	corriente = (sumatoria/n)**(1/2)                    # Ecuación del RMS
-	irms=corriente 	     		                            # Corriente eficaz (A)
-	potence=irms*110.0  		                            # Potencia = Coriente * Voltage (W)
+		voltaje   = adc.read() * (1/1023.0)         # voltaje del sensor
+		corriente = voltaje*30.0		    # Corriente del sensor = Voltaje del sensor * (30A/1V)
+		sumatoria = sumatoria+(corriente*corriente) # Sumatoria de Cuadrados para calcualr corriente irms
+		n = n+1										# Llevamos conteo del numero de ciclos realizados para luego calcular la corriente irms
+		sleep(0.1)									# Ejecutamos un diley de 100 ms
+	sumatoria = sumatoria * 2	     # Para compensar los cuadrados de los semiciclos negativos multiplicamos la corriente por 2.
+	corriente = (sumatoria/n)**(1/2)     # Ecuación del RMS
+	irms=corriente 	     		     # Corriente eficaz (A)
+	potence=irms*110.0  		     # Potencia = Coriente * Voltage (W)
 	print ("corriente recolectada: ", corriente," A")   # Imprimimos el valor de la corriente recolectada
 	print ("Potencia  recolectada: ", potence," W\n\r") # Imprimimos el valor de la potencia recolectada
 	return potence
@@ -36,35 +36,35 @@ def request(url, sensor):
 
 
 def sleep_mode(reset_time):
-	rtc = machine.RTC() 							                        # Iniciamos la variable rtc con el metodo Real Time Clock
+	rtc = machine.RTC() 							# Iniciamos la variable rtc con el metodo Real Time Clock
 	rtc.irq(trigger=rtc.ALARM0, wake=machine.DEEPSLEEP) 			# Configuiramos el modo sleep
-	rtc.alarm(rtc.ALARM0, reset_time)					                # Definimos en cuanto timepo queremos que se resete el modulo 
+	rtc.alarm(rtc.ALARM0, reset_time)					# Definimos en cuanto timepo queremos que se resete el modulo 
 
 
 
 def current():
 	pin = machine.Pin(2, machine.Pin.OUT)					# Iniciamos la variable pin con el metodo Pin.Out para poder contolar si el pin se enciende o se apaga
-	pin.off()								        # Encendemos el pin cada que se este realize la lectura del sensor
+	pin.off()								# Encendemos el pin cada que se este realize la lectura del sensor
 	data, value = 0, 0							# Inicializamos las variables en 0
-	sleep(0.5)				    				  # Ejecutamos un delay  antes de empezar el proceso
+	sleep(0.5)				    				# Ejecutamos un delay  antes de empezar el proceso
 	for _ in range(9):							# Realizamos El proceso de lectura 9 veces
 		value += potencia()						# Almacenamos el valor leido de la potencia
-	if value > data:							  # Verificamos que hayamos obtenido datos
-		data = value / 9						  # Sacamos el promedio de la potencia obtenida
+	if value > data:							# Verificamos que hayamos obtenido datos
+		data = value / 9						# Sacamos el promedio de la potencia obtenida
 	print("Potencia Promedio:", data,"W")				        # Imprimimos el valor de la potencia promedio
 	request("pinogano2.mooo.com", str(data))    				# Enviamos la informacion al servidor
 	print("\n\rHasta Luego  T.T")               				# Imprimimos un mensaje de que el modo sleep se ejecutara
-	machine.deepsleep()							                    # Ponemos el microcontrolador en modo sleep
+	machine.deepsleep()							# Ponemos el microcontrolador en modo sleep
 
 
 
 def run():
 	if machine.reset_cause() == machine.DEEPSLEEP_RESET: 			 # Hacemos un cast a la variable DEEPSLEEP_RESET para saber cual fue el motivo del reset del micro
-		print('\n\rDespertando xD ...')				 	                 # Imprimimos un mensaje cuando el motivo del reset fue por el modo sleep
+		print('\n\rDespertando xD ...')				 	 # Imprimimos un mensaje cuando el motivo del reset fue por el modo sleep
 	else:
-		print('\n\rMe resetearon, Chau T-T ')		     		         # Imprimimos un mensaje cuando el motivo del reset fue por presionar el boton externo
-	sleep_mode(300000)							                           # Le asignamos el tiempo de cada cuando deseamos que el micro ingrese a modo sleep en este caso cada 5 minutos
-	current()								                                   # leemos el valor de la potencia detectada por el sensor
+		print('\n\rMe resetearon, Chau T-T ')		     		 # Imprimimos un mensaje cuando el motivo del reset fue por presionar el boton externo
+	sleep_mode(300000)							 # Le asignamos el tiempo de cada cuando deseamos que el micro ingrese a modo sleep en este caso cada 5 minutos
+	current()								 # leemos el valor de la potencia detectada por el sensor
 
 
 
